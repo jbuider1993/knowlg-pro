@@ -1,0 +1,38 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.know</groupId>
+		<artifactId>knowlg-pro</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>knowlg-base</artifactId>
+
+	<dependencies>
+
+		<!-- 引入公共模块的依赖 -->
+		<dependency>
+			<groupId>com.know</groupId>
+			<artifactId>knowlg-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<!-- 引入redis的依赖 -->
+		<dependency>
+			<groupId>com.know</groupId>
+			<artifactId>knowlg-redis</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<!-- 引入websocket的依赖 -->
+		<dependency>
+			<groupId>com.know</groupId>
+			<artifactId>knowlg-websocket</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+	</dependencies>
+
+</project>
