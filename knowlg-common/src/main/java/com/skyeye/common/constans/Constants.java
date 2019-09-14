@@ -635,4 +635,9 @@ public class Constants {
     	return PERSON_MAIL_TYPE_LIST + userId;
     }
     
+	//获取已经上线的知识库类型列表的redis的key
+  	public static final String SYS_SECOND_KNOWLEDGE_TYPE_UP_STATE_LIST = "sys_second_knowledge_type_up_state_list_";
+  	public static String sysSecondKnowledgeTypeUpStateList(String id) {
+  		return SYS_SECOND_KNOWLEDGE_TYPE_UP_STATE_LIST + id;
+  	}
 }
