@@ -6,7 +6,7 @@
 		SELECT
 			a.id,
 			a.`name`,
-			CONVERT(a.create_time, char) createTime,
+			DATE_FORMAT(a.create_time,'%Y-%m-%d') createTime,
 			a.state,
 			a.order_by orderBy,
 			a.parent_id pId,

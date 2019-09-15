@@ -3,53 +3,71 @@
 	<!-- 
 		- allUse  是否需要登录才能使用   1是   0否  2需要登陆才能访问，但无需授权    默认为否
 	 -->
-	 <url id="knowledgetype001" path="/post/KnowledgeTypeController/queryKnowledgeTypeList" val="获取知识库类型列表" allUse="1">
+	<url id="knowledgetype001" path="/post/KnowledgeTypeController/queryKnowledgeTypeList" val="获取知识库类型列表" allUse="1">
 		<property id="name" name="name" ref="" var="知识库类型名称"/>
 		<property id="parentId" name="parentId" ref="" var="一级类型id"/>
 	</url>
-	
 	<url id="knowledgetype002" path="/post/KnowledgeTypeController/insertKnowledgeTypeMation" val="新增知识库类型" allUse="1">
 	    <property id="name" name="name" ref="required" var="知识库类型名称"/>
 	    <property id="parentId" name="parentId" ref="" var="一级类型id"/>
 	</url>
-	
 	<url id="knowledgetype003" path="/post/KnowledgeTypeController/deleteKnowledgeTypeById" val="删除知识库类型" allUse="1">
 	    <property id="rowId" name="id" ref="required" var="知识库类型名称id"/>
 	</url>
-	
 	<url id="knowledgetype004" path="/post/KnowledgeTypeController/updateUpKnowledgeTypeById" val="上线知识库类型" allUse="1">
 	    <property id="rowId" name="id" ref="required" var="知识库类型名称id"/>
 	</url>
-	
 	<url id="knowledgetype005" path="/post/KnowledgeTypeController/updateDownKnowledgeTypeById" val="下线知识库类型" allUse="1">
 	    <property id="rowId" name="id" ref="required" var="知识库类型名称id"/>
 	</url>
-	
 	<url id="knowledgetype006" path="/post/KnowledgeTypeController/selectKnowledgeTypeById" val="获取选中的知识库类型信息用以编辑" allUse="2">
 	    <property id="rowId" name="id" ref="required" var="知识库类型名称id"/>
 	</url>
-	
 	<url id="knowledgetype007" path="/post/KnowledgeTypeController/editKnowledgeTypeMationById" val="编辑知识库类型" allUse="1">
 	    <property id="rowId" name="id" ref="required" var="知识库类型名称id"/>
 	    <property id="name" name="name" ref="required" var="知识库类型名称"/>
 	</url>
-	
 	<url id="knowledgetype008" path="/post/KnowledgeTypeController/editKnowledgeTypeMationOrderNumUpById" val="知识库类型上移" allUse="1">
 		<property id="rowId" name="id" ref="required" var="类型id" />
 	</url>
-	
 	<url id="knowledgetype009" path="/post/KnowledgeTypeController/editKnowledgeTypeMationOrderNumDownById" val="知识库类型下移" allUse="1">
 		<property id="rowId" name="id" ref="required" var="类型id" />
 	</url>
-	
 	<url id="knowledgetype011" path="/post/KnowledgeTypeController/queryFirstKnowledgeTypeUpStateList" val="获取已经上线的一级类型列表" allUse="2">
 	</url>
-	
 	<url id="knowledgetype012" path="/post/KnowledgeTypeController/queryAllFirstKnowledgeTypeStateList" val="获取所有的一级类型列表" allUse="2">
 	</url>
-	
 	<url id="knowledgetype013" path="/post/KnowledgeTypeController/querySecondKnowledgeTypeUpStateList" val="获取上线的一级类型对应的上线的二级类型列表" allUse="2">
 		<property id="parentId" name="parentId" ref="required" var="类型id" />
 	</url>
-	
+	<url id="knowledgecontent001" path="/post/KnowledgeContentController/queryKnowledgeContentList" val="获取知识库列表" allUse="2">
+		<property id="limit" name="limit" ref="required,num" var="分页参数,每页多少条数据" />
+		<property id="page" name="page" ref="required,num" var="分页参数,第几页"/>
+		<property id="title" name="title" ref="" var="公告名称"/>
+		<property id="state" name="state" ref="" var="上线状态" />
+	</url>
+	<url id="knowledgecontent002" path="/post/KnowledgeContentController/insertKnowledgeContentMation" val="新增知识库" allUse="2">
+		<property id="title" name="title" ref="required" var="知识库标题"/>
+		<property id="desc" name="desc" ref="required" var="知识库简介"/>
+		<property id="content" name="content" ref="required" var="知识库内容"/>
+		<property id="typeId" name="typeId" ref="required" var="知识库一级分类"/>
+		<property id="secondTypeId" name="secondTypeId" ref="required" var="知识库二级分类"/>
+	</url>
+	<url id="knowledgecontent003" path="/post/KnowledgeContentController/selectKnowledgeContentById" val="通过id查找对应的知识库信息用以编辑" allUse="2">
+	    <property id="rowId" name="id" ref="required" var="知识库id"/>
+	</url>
+	<url id="knowledgecontent004" path="/post/KnowledgeContentController/editKnowledgeContentById" val="编辑知识库" allUse="2">
+	    <property id="rowId" name="id" ref="required" var="知识库id"/>
+	    <property id="title" name="title" ref="required" var="标题"/>
+	    <property id="typeId" name="typeId" ref="required" var="一级公告类型"/>
+	    <property id="secondTypeId" name="secondTypeId" ref="required" var="二级公告类型"/>
+	    <property id="desc" name="desc" ref="required" var="知识库简介"/>
+	    <property id="content" name="content" ref="required" var="公告内容"/>
+	</url>
+	<url id="knowledgecontent005" path="/post/KnowledgeContentController/deleteKnowledgeContentById" val="删除知识库" allUse="2">
+	    <property id="rowId" name="id" ref="required" var="知识库id"/>
+	</url>
+	<url id="knowledgecontent006" path="/post/KnowledgeContentController/queryKnowledgeContentMationById" val="知识库详情" allUse="2">
+	    <property id="rowId" name="id" ref="required" var="知识库id"/>
+	</url>
 </controller>

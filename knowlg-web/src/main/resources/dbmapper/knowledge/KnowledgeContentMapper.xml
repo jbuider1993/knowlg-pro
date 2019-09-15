@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.skyeye.dao.KnowledgeContentDao">
+	
+	<insert id="insertKnowledgeContentMation" parameterType="java.util.Map">
+	    INSERT into knowlg_content
+	    (id, title, `desc`, content, type_id, second_type_id, state, read_num, create_id, create_time)
+	    VALUES(#{id}, #{title}, #{desc}, #{content}, #{typeId}, #{secondTypeId}, #{state}, #{readNum}, #{createId}, #{createTime})
+	</insert>
+	
+	<select id="queryKnowledgeContentList" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+			a.id,
+			a.title,
+			c.`name` typeName,
+			d.`name` secondTypeName,
+			DATE_FORMAT(a.create_time,'%Y-%m-%d') createTime,
+			a.state
+		FROM
+			knowlg_content a,
+			knowlg_type c,
+			knowlg_type d
+		WHERE 
+			a.type_id = c.id
+		AND a.second_type_id = d.id
+		<if test="title != '' and title != null">
+			AND a.title LIKE '%${title}%'
+		</if>
+		<if test="state != '' and state != null">
+			AND a.state = #{state}
+		</if>
+	</select>
+	
+	<select id="selectKnowledgeContentById" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+			a.id,
+			a.title,
+			a.type_id typeId,
+			a.second_type_id secondTypeId,
+			a.`desc`,
+			a.content
+		FROM
+			knowlg_content a
+		WHERE
+			a.id = #{id}
+	</select>
+	
+	<update id="editKnowledgeContentById" parameterType="java.util.Map">
+		UPDATE knowlg_content
+		<set>
+			title = #{title},
+			`desc` = #{desc},
+			content = #{content},
+			type_id = #{typeId},
+			second_type_id = #{secondTypeId}
+		</set>
+		WHERE id = #{id}
+	</update>
+	
+	<delete id="deleteKnowledgeContentById" parameterType="java.util.Map">
+		DELETE
+		FROM
+			knowlg_content
+		WHERE
+			id = #{id}
+	</delete>
+	
+	<select id="queryKnowledgeContentMationById" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+			a.id,
+			a.title,
+			a.content,
+			CASE a.state WHEN '1' THEN '审核中' WHEN '2' THEN '审核通过' WHEN '3' THEN '审核不通过' END state,
+			CASE a.state WHEN '1' THEN 'state-new' WHEN '2' THEN 'state-up' WHEN '3' THEN 'state-down' END colorClass,
+			DATE_FORMAT(a.create_time,'%Y-%m-%d') createTime,
+			a.read_num readNum,
+			c.`name` typeName,
+			d.`name` secondTypeName
+		FROM
+			knowlg_content a,
+			knowlg_type c,
+			knowlg_type d
+		WHERE
+			a.id = #{id}
+		AND a.type_id = c.id
+		AND a.second_type_id = d.id
+	</select>
+	
+</mapper>

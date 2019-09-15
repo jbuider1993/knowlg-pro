@@ -13,7 +13,7 @@ layui.config({
 		form = layui.form,
 		treeGrid = layui.treeGrid;
 	
-	authBtn('1568476869775');
+//	authBtn('1568476869775');
 	
 	//表格渲染
 	treeGrid.render({
