@@ -32,7 +32,14 @@
 			<artifactId>knowlg-websocket</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-
+		
+		<!-- https://mvnrepository.com/artifact/com.blingblingbang/ueditor -->
+		<dependency>
+		    <groupId>com.blingblingbang</groupId>
+		    <artifactId>ueditor</artifactId>
+		    <version>1.1.2</version>
+		</dependency>
+		
 	</dependencies>
 
 </project>

@@ -58,7 +58,7 @@ public class SessionFilter implements Filter {
 		servletResponse.setHeader("Access-Control-Allow-Origin", "*");
 		//获取请求路径
 		String url = servletRequest.getContextPath() + servletRequest.getServletPath();
-		
+
 		//1.文件目录过滤
 		for(String str : Constants.FILTER_FILE_CATALOG_OPTION){
 			if (url.indexOf(str) != -1) {
@@ -73,6 +73,11 @@ public class SessionFilter implements Filter {
 				chain.doFilter(new XssHttpServletRequestWrapper((HttpServletRequest) request), response);
 				return;
 			}
+		}
+		
+		if (url.indexOf("/upload") != -1) {//upload请求通过
+			chain.doFilter(new XssHttpServletRequestWrapper((HttpServletRequest) request), response);
+			return;
 		}
 		
 		//3.转换请求过滤

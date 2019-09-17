@@ -97,7 +97,7 @@ layui.config({
 			url: "../../tpl/knowledgecontent/knowledgecontentadd.html", 
 			title: "新增知识库",
 			pageId: "knowledgecontentadd",
-			area: ['70vw', '90vh'],
+			area: ['90vw', '90vh'],
 			callBack: function(refreshCode){
                 if (refreshCode == '0') {
                 	winui.window.msg("操作成功", {icon: 1,time: 2000});

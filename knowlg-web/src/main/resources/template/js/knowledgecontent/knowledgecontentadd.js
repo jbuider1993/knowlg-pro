@@ -1,7 +1,6 @@
 
 var typeId = "";
 var secondTypeId = "";
-var layedit;
 
 layui.config({
 	base: basePath, 
@@ -10,14 +9,28 @@ layui.config({
     window: 'js/winui.window',
 }).define(['window', 'jquery', 'winui', 'tableSelect'], function (exports) {
 	winui.renderColor();
-	layui.use(['form', 'layedit'], function (form) {
+	layui.use(['form'], function (form) {
 		var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
 	    var $ = layui.$,
-	    form = layui.form,
-	    tableSelect = layui.tableSelect;
-	    layedit = layui.layedit;
+		    form = layui.form,
+		    tableSelect = layui.tableSelect;
 
 	    initNoticeTypeId();
+	    
+	    var ue = UE.getEditor('container',{
+	    	//初始化高度
+	    	initialFrameHeight: 700,
+	    });
+	    UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+	    UE.Editor.prototype.getActionUrl = function(action){
+	        if (action == 'uploadimage' || action == 'uploadfile' || action == 'uploadvideo' || action == 'uploadimage'){//上传单个图片,上传附件,上传视频,多图上传
+	            return reqBasePath + '/upload/editUploadController/uploadContentPic?userToken=' + getCookie('userToken');
+	        } else if(action == 'listimage'){
+	        	return reqBasePath + '/upload/editUploadController/downloadContentPic?userToken=' + getCookie('userToken');
+	        }else{
+	            return this._bkGetActionUrl.call(this, action);
+	        }
+	    };
 	    
 	    //初始化一级公告类型
 		function initNoticeTypeId(){
@@ -59,24 +72,6 @@ layui.config({
 			secondTypeId = data.value;
 		});
  		
-	    //公告内容富文本框
-	    var content = layedit.build('content', {
-	    	tool: [
-    	       'strong' //加粗
-    	       ,'italic' //斜体
-    	       ,'underline' //下划线
-    	       ,'del' //删除线
-    	       ,'|' //分割线
-    	       ,'left' //左对齐
-    	       ,'center' //居中对齐
-    	       ,'right' //右对齐
-    	       ,'link' //超链接
-    	       ,'unlink' //清除链接
-    	       ,'face' //表情
-    	       ,'code'
-    	     ]
-	    });
-	    
  		form.render();
  	    form.on('submit(formAddBean)', function (data) {
  	    	//表单验证
@@ -86,7 +81,7 @@ layui.config({
  	        		typeId: typeId,
  	        		secondTypeId: secondTypeId,
  	        		desc: $("#desc").val(),
- 	        		content: encodeURIComponent(layedit.getContent(content))
+ 	        		content: encodeURIComponent(ue.getContent())
  	        	};
  	        	if(isNull(params.typeId)){
  	        		winui.window.msg('请选择一级公告类型', {icon: 2,time: 2000});
@@ -97,11 +92,11 @@ layui.config({
  	        		return false;
  	        	}
  	        	if(isNull($("#desc").val())){
-    				winui.window.msg('请填写知识库简介', {icon: 2,time: 2000});
+    				winui.window.msg('请填写简介', {icon: 2,time: 2000});
     				return false;
     			}
-    			if(isNull(layedit.getContent(content))){
-    				winui.window.msg('请填写知识库内容', {icon: 2,time: 2000});
+    			if(isNull(ue.getContent())){
+    				winui.window.msg('请填写内容', {icon: 2,time: 2000});
     				return false;
     			}
     			AjaxPostUtil.request({url:reqBasePath + "knowledgecontent002", params:params, type:'json', callback:function(json){
