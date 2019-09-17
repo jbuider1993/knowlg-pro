@@ -17,4 +17,10 @@ public interface KnowledgeContentService {
 
 	public void queryKnowledgeContentMationById(InputObject inputObject, OutputObject outputObject) throws Exception;
 
+	public void insertUploadFileByUserId(InputObject inputObject, OutputObject outputObject) throws Exception;
+
+	public void insertUploadFileChunksByUserId(InputObject inputObject, OutputObject outputObject) throws Exception;
+
+	public void queryUploadFileChunksByChunkMd5(InputObject inputObject, OutputObject outputObject) throws Exception;
+
 }

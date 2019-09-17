@@ -243,6 +243,7 @@ function isNull(str){
 	    contextMenu: 'modules/contextMenu',//右键
 	    fullcalendar: 'modules/fullcalendar/fullcalendar',//日程插件
 	    tagEditor: 'modules/tagEditor/jquery.tag-editor', //标签输入框
+	    webuploader: 'modules/webuploader/webuploader',//上传
 	};
 
 	// 记录基础数据

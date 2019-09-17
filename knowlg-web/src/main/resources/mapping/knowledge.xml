@@ -70,4 +70,22 @@
 	<url id="knowledgecontent006" path="/post/KnowledgeContentController/queryKnowledgeContentMationById" val="知识库详情" allUse="2">
 	    <property id="rowId" name="id" ref="required" var="知识库id"/>
 	</url>
+	<url id="knowledgecontent007" path="/post/KnowledgeContentController/insertUploadFileByUserId" val="上传文件" allUse="2">
+		<property id="name" name="name" ref="required" var="文件名" />
+		<property id="size" name="size" ref="required,num" var="文件大小" />
+		<property id="md5" name="md5" ref="required" var="文件唯一标示" />
+		<property id="chunk" name="chunk" ref="required" var="分块上传，块下标" />
+		<property id="chunkSize" name="chunkSize" ref="required" var="分块上传时，块的大小，用于最后合并" />
+	</url>
+	<url id="knowledgecontent008" path="/post/KnowledgeContentController/insertUploadFileChunksByUserId" val="上传文件合并块" allUse="2">
+		<property id="md5" name="md5" ref="required" var="文件唯一标示" />
+		<property id="name" name="name" ref="required" var="文件名" />
+		<property id="size" name="size" ref="required,num" var="文件大小" />
+	</url>
+	<url id="knowledgecontent009" path="/post/KnowledgeContentController/queryUploadFileChunksByChunkMd5" val="文件分块上传检测是否上传" allUse="2">
+		<property id="md5" name="md5" ref="required" var="文件唯一标示" />
+		<property id="chunk" name="chunk" ref="required" var="分块上传，块下标" />
+		<property id="chunkSize" name="chunkSize" ref="required" var="分块上传时，块的大小，用于最后合并" />
+	</url>
+	
 </controller>

@@ -108,6 +108,18 @@ layui.config({
 			}});
     });
 	
+	//批量上传
+	$("body").on("click", "#addAllBean", function(){
+    	_openNewWindows({
+			url: "../../tpl/knowledgecontent/filefolderupload.html", 
+			title: "批量上传知识库",
+			pageId: "filefolderupload",
+			area: ['400px', '350px'],
+			callBack: function(refreshCode){
+				loadTable();
+			}});
+    });
+	
 	//删除
 	function delet(data){
 		var msg = '确认删除选中数据吗？';

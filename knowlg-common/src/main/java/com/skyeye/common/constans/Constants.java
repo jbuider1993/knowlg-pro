@@ -173,4 +173,10 @@ public class Constants {
   	public static String sysSecondKnowledgeTypeUpStateList(String id) {
   		return SYS_SECOND_KNOWLEDGE_TYPE_UP_STATE_LIST + id;
   	}
+  	
+  	//word文档分块上传时的分块集合存储key
+  	public static final String SYS_WORD_FILE_MODULE_MD5 = "sys_word_file_module_md5_";
+  	public static String getSysWordFileModuleByMd5(String md5) {
+  		return SYS_WORD_FILE_MODULE_MD5 + md5;
+  	}
 }

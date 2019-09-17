@@ -111,5 +111,53 @@ public class KnowledgeContentController {
 	public void queryKnowledgeContentMationById(InputObject inputObject, OutputObject outputObject) throws Exception{
 		knowledgeContentService.queryKnowledgeContentMationById(inputObject, outputObject);
 	}
+	
+	/**
+	 * 
+	     * @Title: insertUploadFileByUserId
+	     * @Description: 上传文件
+	     * @param @param inputObject
+	     * @param @param outputObject
+	     * @param @throws Exception    参数
+	     * @return void    返回类型
+	     * @throws
+	 */
+	@RequestMapping("/post/KnowledgeContentController/insertUploadFileByUserId")
+	@ResponseBody
+	public void insertUploadFileByUserId(InputObject inputObject, OutputObject outputObject) throws Exception{
+		knowledgeContentService.insertUploadFileByUserId(inputObject, outputObject);
+	}
+	
+	/**
+	 * 
+	     * @Title: insertUploadFileChunksByUserId
+	     * @Description: 上传文件合并块
+	     * @param @param inputObject
+	     * @param @param outputObject
+	     * @param @throws Exception    参数
+	     * @return void    返回类型
+	     * @throws
+	 */
+	@RequestMapping("/post/KnowledgeContentController/insertUploadFileChunksByUserId")
+	@ResponseBody
+	public void insertUploadFileChunksByUserId(InputObject inputObject, OutputObject outputObject) throws Exception{
+		knowledgeContentService.insertUploadFileChunksByUserId(inputObject, outputObject);
+	}
+	
+	/**
+	 * 
+	     * @Title: queryUploadFileChunksByChunkMd5
+	     * @Description: 文件分块上传检测是否上传
+	     * @param @param inputObject
+	     * @param @param outputObject
+	     * @param @throws Exception    参数
+	     * @return void    返回类型
+	     * @throws
+	 */
+	@RequestMapping("/post/KnowledgeContentController/queryUploadFileChunksByChunkMd5")
+	@ResponseBody
+	public void queryUploadFileChunksByChunkMd5(InputObject inputObject, OutputObject outputObject) throws Exception{
+		knowledgeContentService.queryUploadFileChunksByChunkMd5(inputObject, outputObject);
+	}
 
 }
