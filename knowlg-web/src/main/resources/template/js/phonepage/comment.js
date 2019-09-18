@@ -21,15 +21,15 @@ layui.config({
 	    where: {title: "", state: ""},
 	    page: false,
 	    cols: [[
-	        { field: 'title', title: '', align: 'left', width: "calc(100% - 90px)", templet: function(d){
+	        { field: 'title', title: '', align: 'left', width: "calc(100% - 50px)", templet: function(d){
         		return "<a style='' lay-event='details'>" + d.title + "</a>";
 	        }},
-	        { field: 'createTime', title: '', align: 'center', width: 90 },
+	        { field: 'createTime', title: '', align: 'right', width: 60 },
 	    ]],
 	    done: function(){
 	    	$("#messageTable").parent().find("div[class='layui-table-header']").remove();
 	    	var tbody = $("#messageTable").parent().find("div[class='layui-table-box']");
-	    	tbody.find("td[data-field='title']").css({width: tbody.width() - 90});
+	    	tbody.find("td[data-field='title']").css({width: tbody.width() - 60});
 	    	tbody.find('td').css({
 	    		'border-right': 'none'
 	    	});
