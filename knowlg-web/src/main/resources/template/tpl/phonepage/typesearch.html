@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-cache" />
+	<meta http-equiv="Expires" content="-1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link rel="icon" type="image/x-icon" href="../../assets/images/eye.png"/>
+    <title></title>
+    <link href="../../assets/lib/layui/css/layui.css" rel="stylesheet" />
+    <link href="../../assets/lib/animate/animate.min.css" rel="stylesheet" />
+    <link href="../../assets/lib/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <link href="../../assets/lib/winui/css/winui.css" rel="stylesheet" />
+    <script>
+        /^http(s*):\/\//.test(location.href) || alert('请先部署到 localhost 下再访问');
+    </script>
+</head>
+<body style="height: auto; float: left;">
+	<div class="layui-card-body layui-text custom-card-body" style="padding: 0px 5px; float: left;">
+		<div class="layadmin-serach-list layui-text" id="showForm" style="float: left;">
+		</div>
+	</div>
+	
+	<!-- itemTemplate -->
+	<script type="text/x-handlebars-template" id="itemTemplate">
+		{{#bean}}
+			<div rowid="{{id}}">
+				<div class="layui-serachlist-text">
+					<h3><a href="">{{title}}</a></h3>
+					<p>江湖上关于<em>心姐</em> 的性别一直是个谜。。江湖上关于心姐的性别一直是个谜。。江湖上关于心姐的性别一直是个谜。。江湖上关于心姐的性别一直是个谜。。江湖上关于心姐的性别一直是个谜。。江湖上关于心姐的性别一直是个谜。。江湖上关于心姐的性别一直是个谜。。江湖上关于心姐的性别一直是个谜。。江湖上关于心姐的性别一直是个谜。。江湖上关于心姐的性别一直是个谜。。</p>
+					<p>
+						<span class="layui-badge layui-bg-blue">{{typeName}}</span>
+					</p>
+				</div>
+			</div>
+		{{/bean}}
+	</script>
+	
+    <!--layui.js-->
+    <script src="../../assets/lib/layui/layui.js" type="text/javascript"></script>
+    <script src="../../assets/lib/layui/custom.js"></script>
+    <script>
+        layui.config({
+            base: '../../js/phonepage/' //指定 index.js 路径
+        }).use('typesearch');
+    </script>
+</body>
+</html>
