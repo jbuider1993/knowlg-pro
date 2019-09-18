@@ -9967,7 +9967,7 @@ var LocalStorage = UE.LocalStorage = (function () {
 UE.plugins['defaultfilter'] = function () {
     var me = this;
     me.setOpt({
-        'allowDivTransToP':true,
+        'allowDivTransToP':false,
         'disabledTableInTable':true
     });
     //默认的过滤处理
@@ -11604,8 +11604,8 @@ UE.plugins['font'] = function () {
                         case 'face':
                             cssStyle.push('font-family:' + node.attrs[p]);
                             break;
-                        case 'style':
-                            cssStyle.push(node.attrs[p]);
+//                        case 'style':
+//                            cssStyle.push(node.attrs[p]);
                     }
                 }
                 node.attrs = {

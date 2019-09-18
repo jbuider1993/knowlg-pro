@@ -142,9 +142,9 @@ layui.config({
 		rowId = data.id;
 		_openNewWindows({
 			url: "../../tpl/knowledgecontent/knowledgecontentedit.html", 
-			title: "编辑类型",
+			title: "编辑知识库",
 			pageId: "knowledgecontentedit",
-			area: ['70vw', '90vh'],
+			area: ['90vw', '90vh'],
 			callBack: function(refreshCode){
                 if (refreshCode == '0') {
                 	winui.window.msg("操作成功", {icon: 1,time: 2000});
@@ -163,7 +163,7 @@ layui.config({
 			url: "../../tpl/knowledgecontent/knowledgecontentdetails.html", 
 			title: "知识库详情",
 			pageId: "knowledgecontentdetails",
-			area: ['70vw', '90vh'],
+			area: ['90vw', '90vh'],
 			callBack: function(refreshCode){
                 if (refreshCode == '0') {
                 	winui.window.msg("操作成功", {icon: 1,time: 2000});

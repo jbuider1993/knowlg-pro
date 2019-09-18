@@ -1,4 +1,6 @@
 
+var content = "";
+
 layui.config({
 	base: basePath, 
 	version: skyeyeVersion
@@ -17,6 +19,8 @@ layui.config({
 		 	pagination: false,
 		 	template: getFileContent('tpl/knowledgecontent/knowledgecontentdetailsTemplate.tpl'),
 		 	ajaxSendAfter:function(json){
+		 		content = json.bean.content;
+		 		$("#knowledgecontentshowBox").attr("src", "knowledgecontentshow.html");
 		 	}
 		});
 	});

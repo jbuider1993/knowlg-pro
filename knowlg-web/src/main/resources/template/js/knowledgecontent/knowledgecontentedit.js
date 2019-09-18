@@ -1,4 +1,3 @@
-var layedit;
 var typeId = "";
 var secondTypeId = "";
 
@@ -9,11 +8,11 @@ layui.config({
     window: 'js/winui.window',
 }).define(['window', 'jquery', 'winui', 'tableSelect'], function (exports) {
 	winui.renderColor();
-	layui.use(['form', 'layedit'], function (form) {
+	layui.use(['form'], function (form) {
 		var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
 	    var $ = layui.$,
 	    tableSelect = layui.tableSelect;
-	    layedit = layui.layedit;
+	    
 	    //初始化一级公告类型
 		function initNoticeType(id){
 			showGrid({
@@ -29,6 +28,7 @@ layui.config({
 			 	}
 		    });
 		}
+		
 		//初始化二级公告类型
 		function initSecondNoticeType(id){
 			showGrid({
@@ -55,7 +55,8 @@ layui.config({
 		 		typeId = json.bean.typeId;	//一级类型id
 		 		secondTypeId = json.bean.secondTypeId;	//二级类型id
 		 		initNoticeType(typeId);
-		 		initSecondNoticeType(secondTypeId);
+		 		if(!isNull(secondTypeId))
+		 			initSecondNoticeType(secondTypeId);
 		 		
 		 		//一级公告类型监听事件
 				form.on('select(typeId)', function(data){
@@ -74,22 +75,23 @@ layui.config({
 					secondTypeId = data.value;
 				});
 				
-		 		//富文本框编辑器
-		 		var getContent = layedit.build('content', {
-			    	tool: [
-		    	       'strong' //加粗
-		    	       ,'italic' //斜体
-		    	       ,'underline' //下划线
-		    	       ,'del' //删除线
-		    	       ,'|' //分割线
-		    	       ,'left' //左对齐
-		    	       ,'center' //居中对齐
-		    	       ,'right' //右对齐
-		    	       ,'link' //超链接
-		    	       ,'unlink' //清除链接
-		    	       ,'face' //表情
-		    	       ,'code'
-		    	     ]
+				var ue = UE.getEditor('container',{
+			    	//初始化高度
+			    	initialFrameHeight: 700,
+			    	maximumWords: 100000
+			    });
+			    UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+			    UE.Editor.prototype.getActionUrl = function(action){
+			        if (action == 'uploadimage' || action == 'uploadfile' || action == 'uploadvideo' || action == 'uploadimage'){//上传单个图片,上传附件,上传视频,多图上传
+			            return reqBasePath + '/upload/editUploadController/uploadContentPic?userToken=' + getCookie('userToken');
+			        } else if(action == 'listimage'){
+			        	return reqBasePath + '/upload/editUploadController/downloadContentPic?userToken=' + getCookie('userToken');
+			        }else{
+			            return this._bkGetActionUrl.call(this, action);
+			        }
+			    };
+			    ue.addListener("ready", function () {
+			    	ue.setContent(json.bean.content);
 			    });
 		 		
 		 		form.render();
@@ -102,7 +104,7 @@ layui.config({
 		 	        		typeId: typeId,
 		 	        		secondTypeId: secondTypeId,
 		 	        		desc: $("#desc").val(),
-		 	        		content: encodeURIComponent(layedit.getContent(getContent))
+		 	        		content: encodeURIComponent(ue.getContent())
 		 	        	};
 		 	        	if(isNull(params.typeId)){
 		 	        		winui.window.msg('请选择一级公告类型', {icon: 2,time: 2000});
@@ -116,7 +118,7 @@ layui.config({
 		    				winui.window.msg('请填写知识库简介', {icon: 2,time: 2000});
 		    				return false;
 		    			}
-		    			if(isNull(layedit.getContent(getContent))){
+		    			if(isNull(ue.getContent())){
 		    				winui.window.msg('请填写知识库内容', {icon: 2,time: 2000});
 		    				return false;
 		    			}

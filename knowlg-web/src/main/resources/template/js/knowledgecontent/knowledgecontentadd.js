@@ -20,6 +20,7 @@ layui.config({
 	    var ue = UE.getEditor('container',{
 	    	//初始化高度
 	    	initialFrameHeight: 700,
+	    	maximumWords: 100000
 	    });
 	    UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
 	    UE.Editor.prototype.getActionUrl = function(action){

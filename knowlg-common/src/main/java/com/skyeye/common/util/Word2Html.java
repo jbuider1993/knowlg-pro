@@ -26,6 +26,8 @@ import org.apache.poi.xwpf.converter.core.FileURIResolver;
 import org.apache.poi.xwpf.converter.xhtml.XHTMLConverter;
 import org.apache.poi.xwpf.converter.xhtml.XHTMLOptions;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.jsoup.Jsoup;
+import org.jsoup.select.Elements;
 import org.w3c.dom.Document;
 
 public class Word2Html {
@@ -122,8 +124,8 @@ public class Word2Html {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				// 这个地方一般是将文件上传到第三方存储文件的服务器中，然后返回对应图片地址
-				return imagePath + suggestedName;
+				// 这个地方一般是将文件上传到第三方存储文件的服务器中，然后返回对应图片地址/images/upload/ueditor/文件名.类型
+				return "/images/upload/ueditor/" + suggestedName;
 			}
 		});
 
@@ -149,6 +151,29 @@ public class Word2Html {
         map.put("code", 1);// 0失败；1成功
 		map.put("content", content);
 		return map;
+	}
+	
+	/**
+	 * 获取html内容
+	 * @param content
+	 * @return
+	 */
+	public static String getHtmlBodyAndCSS(String content) {
+		org.jsoup.nodes.Document document = Jsoup.parse(content);// 获得document
+		Elements body = document.getElementsByTag("body");
+		Elements css = document.getElementsByTag("style");
+		return "<style type='text/css'>" + css.html() + "</style>" + body.html();
+	}
+	
+	/**
+	 * 获取html的body内容
+	 * @param content
+	 * @return
+	 */
+	public static String getHtmlBody(String content) {
+		org.jsoup.nodes.Document document = Jsoup.parse(content);// 获得document
+		Elements body = document.getElementsByTag("body");
+		return body.html();
 	}
 	
 }

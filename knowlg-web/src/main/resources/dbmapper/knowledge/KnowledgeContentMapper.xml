@@ -17,12 +17,10 @@
 			DATE_FORMAT(a.create_time,'%Y-%m-%d') createTime,
 			a.state
 		FROM
-			knowlg_content a,
-			knowlg_type c,
-			knowlg_type d
-		WHERE 
-			a.type_id = c.id
-		AND a.second_type_id = d.id
+			knowlg_content a
+			LEFT JOIN knowlg_type c ON a.type_id = c.id
+			LEFT JOIN knowlg_type d ON a.second_type_id = d.id
+		WHERE 1 = 1
 		<if test="title != '' and title != null">
 			AND a.title LIKE '%${title}%'
 		</if>
@@ -77,13 +75,11 @@
 			c.`name` typeName,
 			d.`name` secondTypeName
 		FROM
-			knowlg_content a,
-			knowlg_type c,
-			knowlg_type d
+			knowlg_content a
+			LEFT JOIN knowlg_type c ON a.type_id = c.id
+			LEFT JOIN knowlg_type d ON a.second_type_id = d.id
 		WHERE
 			a.id = #{id}
-		AND a.type_id = c.id
-		AND a.second_type_id = d.id
 	</select>
 	
 </mapper>
