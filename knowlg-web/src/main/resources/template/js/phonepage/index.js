@@ -54,6 +54,8 @@ layui.config({
 		$(".search-show").hide();
 		//隐藏根据分类搜索类型
 		$(".type-search-show").hide();
+		//重置搜索内容为空
+		$("#searchName").val("");
 	});
 	
 	//分类
