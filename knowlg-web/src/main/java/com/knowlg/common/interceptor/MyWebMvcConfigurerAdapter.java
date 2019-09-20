@@ -1,4 +1,4 @@
-package com.erp.common.interceptor;
+package com.knowlg.common.interceptor;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

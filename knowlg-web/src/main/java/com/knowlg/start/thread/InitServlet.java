@@ -1,4 +1,4 @@
-package com.erp.start.thread;
+package com.knowlg.start.thread;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

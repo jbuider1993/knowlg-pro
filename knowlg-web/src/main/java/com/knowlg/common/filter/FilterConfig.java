@@ -1,4 +1,4 @@
-package com.erp.common.filter;
+package com.knowlg.common.filter;
 
 import javax.servlet.Filter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;

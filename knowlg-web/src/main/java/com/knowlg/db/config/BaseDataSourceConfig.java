@@ -1,4 +1,4 @@
-package com.erp.db.config;
+package com.knowlg.db.config;
 
 import javax.sql.DataSource;
 

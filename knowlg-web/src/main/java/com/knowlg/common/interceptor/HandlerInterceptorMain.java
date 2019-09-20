@@ -1,4 +1,4 @@
-package com.erp.common.interceptor;
+package com.knowlg.common.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

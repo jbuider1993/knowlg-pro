@@ -1,4 +1,4 @@
-package com.erp.common.filter;
+package com.knowlg.common.filter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
