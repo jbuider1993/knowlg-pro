@@ -3234,8 +3234,8 @@ body .layer-ext-winconfirm .layui-layer-title {
 }
 
 .ver-center{
-	display: flex;
-    align-items: Center;
+	align-items: Center;
+    padding-top: 8px;
 }
 
 .padding-l-r-10{

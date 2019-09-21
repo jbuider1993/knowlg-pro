@@ -46,4 +46,6 @@ public interface KnowledgeTypeDao {
 
 	public Map<String, Object> queryKnowledgeTypeById(Map<String, Object> map) throws Exception;
 
+	public List<Map<String, Object>> queryAllSecondKnowledgeTypeStateList(Map<String, Object> map) throws Exception;
+
 }

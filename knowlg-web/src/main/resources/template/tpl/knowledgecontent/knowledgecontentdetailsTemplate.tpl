@@ -32,7 +32,7 @@
     <div class="layui-form-item layui-col-xs12">
         <label class="layui-form-label">内容：</label>
         <div class="layui-input-block ver-center">
-			<iframe id="knowledgecontentshowBox" style="width: 100%; border: 0px;"></iframe>
+			<iframe id="knowledgecontentshowBox" style="width: 100%; border: 0px;" scrolling="no"></iframe>
 		</div>
     </div>
 {{/bean}}

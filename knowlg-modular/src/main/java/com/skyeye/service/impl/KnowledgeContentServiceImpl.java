@@ -57,6 +57,7 @@ public class KnowledgeContentServiceImpl implements KnowledgeContentService {
 	@Override
 	public void queryKnowledgeContentList(InputObject inputObject, OutputObject outputObject) throws Exception {
 		Map<String, Object> map = inputObject.getParams();
+		map.put("userId", inputObject.getLogParams().get("id"));
 		List<Map<String, Object>> beans = knowledgeContentDao.queryKnowledgeContentList(map, 
 				new PageBounds(Integer.parseInt(map.get("page").toString()), Integer.parseInt(map.get("limit").toString())));
 		PageList<Map<String, Object>> beansPageList = (PageList<Map<String, Object>>)beans;
@@ -348,6 +349,138 @@ public class KnowledgeContentServiceImpl implements KnowledgeContentService {
 		}else{
 			outputObject.setreturnMessage("文件上传失败");
 		}
+	}
+
+	/**
+	 * 
+	     * @Title: queryUnCheckedKnowledgeContentList
+	     * @Description: 获取待审核的知识库列表
+	     * @param @param inputObject
+	     * @param @param outputObject
+	     * @param @throws Exception    参数
+	     * @return void    返回类型
+	     * @throws
+	 */
+	@Override
+	public void queryUnCheckedKnowledgeContentList(InputObject inputObject, OutputObject outputObject) throws Exception {
+		Map<String, Object> map = inputObject.getParams();
+ 		List<Map<String, Object>> beans = knowledgeContentDao.queryUnCheckedKnowledgeContentList(map, 
+				new PageBounds(Integer.parseInt(map.get("page").toString()), Integer.parseInt(map.get("limit").toString())));
+		PageList<Map<String, Object>> beansPageList = (PageList<Map<String, Object>>)beans;
+		int total = beansPageList.getPaginator().getTotalCount();
+		outputObject.setBeans(beans);
+		outputObject.settotal(total);
+	}
+	
+	/**
+	 * 
+	 * @Title: queryKnowledgeContentByIdToCheck
+	 * @Description: 获取知识库信息用于回显审核
+	 * @param @param inputObject
+	 * @param @param outputObject
+	 * @param @throws Exception    参数
+	 * @return void    返回类型
+	 * @throws
+	 */
+	@Override
+	public void queryKnowledgeContentByIdToCheck(InputObject inputObject, OutputObject outputObject) throws Exception {
+		Map<String, Object> map = inputObject.getParams();
+		Map<String, Object> bean = knowledgeContentDao.queryKnowledgeContentByIdToCheck(map);
+		outputObject.setBean(bean);
+		outputObject.settotal(1);
+	}
+	
+	/**
+	 * 
+	     * @Title: editKnowledgeContentToCheck
+	     * @Description: 审核知识库
+	     * @param @param inputObject
+	     * @param @param outputObject
+	     * @param @throws Exception    参数
+	     * @return void    返回类型
+	     * @throws
+	 */
+	@Override
+	public void editKnowledgeContentToCheck(InputObject inputObject, OutputObject outputObject) throws Exception {
+		Map<String, Object> map = inputObject.getParams();
+		map.put("examineId", inputObject.getLogParams().get("id"));
+		map.put("examineTime", ToolUtil.getTimeAndToString());
+		knowledgeContentDao.editKnowledgeContentToCheck(map);
+	}
+
+	/**
+	 * 
+	     * @Title: queryCheckedKnowledgeContentList
+	     * @Description: 获取已经审核的知识库列表
+	     * @param @param inputObject
+	     * @param @param outputObject
+	     * @param @throws Exception    参数
+	     * @return void    返回类型
+	     * @throws
+	 */
+	@Override
+	public void queryCheckedKnowledgeContentList(InputObject inputObject, OutputObject outputObject) throws Exception {
+		Map<String, Object> map = inputObject.getParams();
+		List<Map<String, Object>> beans = knowledgeContentDao.queryCheckedKnowledgeContentList(map, 
+				new PageBounds(Integer.parseInt(map.get("page").toString()), Integer.parseInt(map.get("limit").toString())));
+		PageList<Map<String, Object>> beansPageList = (PageList<Map<String, Object>>)beans;
+		int total = beansPageList.getPaginator().getTotalCount();
+		outputObject.setBeans(beans);
+		outputObject.settotal(total);
+	}
+
+	/**
+	 * 
+	     * @Title: queryUncheckedKnowledgeContent
+	     * @Description: 未审核知识库详情
+	     * @param @param inputObject
+	     * @param @param outputObject
+	     * @param @throws Exception    参数
+	     * @return void    返回类型
+	     * @throws
+	 */
+	@Override
+	public void queryUncheckedKnowledgeContent(InputObject inputObject, OutputObject outputObject) throws Exception {
+		Map<String, Object> map = inputObject.getParams();
+		Map<String, Object> bean = knowledgeContentDao.queryUncheckedKnowledgeContent(map);
+		outputObject.setBean(bean);
+		outputObject.settotal(1);
+	}
+
+	/**
+	 * 
+	     * @Title: queryCheckedKnowledgeContent
+	     * @Description: 已审核的知识库详情
+	     * @param @param inputObject
+	     * @param @param outputObject
+	     * @param @throws Exception    参数
+	     * @return void    返回类型
+	     * @throws
+	 */
+	@Override
+	public void queryCheckedKnowledgeContent(InputObject inputObject,OutputObject outputObject) throws Exception {
+		Map<String, Object> map = inputObject.getParams();
+		Map<String, Object> bean = knowledgeContentDao.queryCheckedKnowledgeContent(map);
+		outputObject.setBean(bean);
+		outputObject.settotal(1);
+	}
+
+	/**
+	 * 
+	     * @Title: queryKnowledgeContentPhoneList
+	     * @Description: 手机端知识库列表
+	     * @param @param inputObject
+	     * @param @param outputObject
+	     * @param @throws Exception    参数
+	     * @return void    返回类型
+	     * @throws
+	 */
+	@Override
+	public void queryKnowledgeContentPhoneList(InputObject inputObject,OutputObject outputObject) throws Exception {
+		Map<String, Object> map = inputObject.getParams();
+ 		List<Map<String, Object>> beans = knowledgeContentDao.queryKnowledgeContentPhoneList(map);
+		outputObject.setBeans(beans);
+		outputObject.settotal(beans.size());
 	}
 
 }

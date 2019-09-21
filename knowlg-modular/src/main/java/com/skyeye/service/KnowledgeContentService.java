@@ -23,4 +23,18 @@ public interface KnowledgeContentService {
 
 	public void queryUploadFileChunksByChunkMd5(InputObject inputObject, OutputObject outputObject) throws Exception;
 
+	public void queryUnCheckedKnowledgeContentList(InputObject inputObject, OutputObject outputObject) throws Exception;
+
+	public void editKnowledgeContentToCheck(InputObject inputObject, OutputObject outputObject) throws Exception;
+
+	public void queryKnowledgeContentByIdToCheck(InputObject inputObject, OutputObject outputObject) throws Exception;
+
+	public void queryCheckedKnowledgeContentList(InputObject inputObject, OutputObject outputObject) throws Exception;
+
+	public void queryUncheckedKnowledgeContent(InputObject inputObject, OutputObject outputObject) throws Exception;
+
+	public void queryCheckedKnowledgeContent(InputObject inputObject, OutputObject outputObject) throws Exception;
+
+	public void queryKnowledgeContentPhoneList(InputObject inputObject, OutputObject outputObject) throws Exception;
+
 }

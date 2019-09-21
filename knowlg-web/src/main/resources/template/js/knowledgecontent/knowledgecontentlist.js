@@ -15,18 +15,21 @@ layui.config({
 	
 	authBtn('1568476869775');
 	
+	var typeId = "";//一级类型
+	var secondTypeId = "";//二级类型
+	
 	//表格渲染
 	table.render({
 	    id: 'messageTable',
 	    elem: '#messageTable',
 	    method: 'post',
-	    idField: 'id',
 	    url: reqBasePath + 'knowledgecontent001',
 	    cellMinWidth: 100,
-	    where: {title:$("#title").val(),state:$("#state").val()},
-	    treeId: 'id',//树形id字段名称
-        treeUpId: 'pId',//树形父id字段名称
-        treeShowName: 'name',//以树形式显示的字段
+	    where: {title:$("#title").val(),state:$("#state").val(),firstType:firstType, secondTypeId:secondTypeId},
+	    even: true,  //隔行变色
+	    page: true,
+	    limits: [8, 16, 24, 32, 40, 48, 56],
+	    limit: 8,
 	    cols: [[
 	        { title: '序号', type: 'numbers'},
 	        { field: 'title', title: '标题', align: 'center', width: 320 },
@@ -79,9 +82,32 @@ layui.config({
 		 	}
 	    });
 	}
+	
+	//初始化二级类型
+	function initsecondType(){
+		showGrid({
+		 	id: "secondTypeId",
+		 	url: reqBasePath + "knowledgetype014",
+		 	params: {parentId: firstType},
+		 	pagination: false,
+		 	template: getFileContent('tpl/template/select-option.tpl'),
+		 	ajaxSendLoadBefore: function(hdb){},
+		 	ajaxSendAfter:function(json){
+		 		form.render('select');
+		 	}
+	    });
+	}
+	
 	//一级类型监听事件
 	form.on('select(firstType)', function(data){
 		firstType = data.value;
+		secondTypeId = "";
+		initsecondType();
+	});
+	
+	//二级类型监听事件
+	form.on('select(secondTypeId)', function(data){
+		secondTypeId = data.value;
 	});
 	
 	form.render();
@@ -179,11 +205,11 @@ layui.config({
     });
     
     function loadTable(){
-    	table.reload("messageTable", {where:{title:$("#title").val(),state:$("#state").val()}});
+    	table.reload("messageTable", {where:{title:$("#title").val(),state:$("#state").val(),firstType:firstType, secondTypeId:secondTypeId}});
     }
     
     function refreshTable(){
-    	table.reload("messageTable", {page: {curr: 1}, where:{title:$("#title").val(),state:$("#state").val()}});
+    	table.reload("messageTable", {page: {curr: 1}, where:{title:$("#title").val(),state:$("#state").val(),firstType:firstType, secondTypeId:secondTypeId}});
     }
     exports('knowledgetypelist', {});
 });

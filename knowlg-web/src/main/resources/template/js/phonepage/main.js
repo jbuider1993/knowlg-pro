@@ -17,7 +17,7 @@ layui.config({
 	    id: 'messageTable',
 	    elem: '#messageTable',
 	    method: 'post',
-	    url: reqBasePath + 'knowledgecontent001',
+	    url: reqBasePath + 'knowledgephone001',
 	    where: {title: "", state: ""},
 	    page: false,
 	    cols: [[

@@ -159,5 +159,115 @@ public class KnowledgeContentController {
 	public void queryUploadFileChunksByChunkMd5(InputObject inputObject, OutputObject outputObject) throws Exception{
 		knowledgeContentService.queryUploadFileChunksByChunkMd5(inputObject, outputObject);
 	}
-
+	
+	/**
+	 * 
+	     * @Title: queryUnCheckedKnowledgeContentList
+	     * @Description: 获取待审核的知识库列表
+	     * @param @param inputObject
+	     * @param @param outputObject
+	     * @param @throws Exception    参数
+	     * @return void    返回类型
+	     * @throws
+	 */
+	@RequestMapping("/post/KnowledgeContentController/queryUnCheckedKnowledgeContentList")
+	@ResponseBody
+	public void queryUnCheckedKnowledgeContentList(InputObject inputObject, OutputObject outputObject) throws Exception{
+		knowledgeContentService.queryUnCheckedKnowledgeContentList(inputObject, outputObject);
+	}
+	
+	/**
+	 * 
+	     * @Title: queryKnowledgeContentByIdToCheck
+	     * @Description: 获取知识库信息用于回显审核
+	     * @param @param inputObject
+	     * @param @param outputObject
+	     * @param @throws Exception    参数
+	     * @return void    返回类型
+	     * @throws
+	 */
+	@RequestMapping("/post/KnowledgeContentController/queryKnowledgeContentByIdToCheck")
+	@ResponseBody
+	public void queryKnowledgeContentByIdToCheck(InputObject inputObject, OutputObject outputObject) throws Exception{
+		knowledgeContentService.queryKnowledgeContentByIdToCheck(inputObject, outputObject);
+	}
+	
+	/**
+	 * 
+	     * @Title: editKnowledgeContentToCheck
+	     * @Description: 审核知识库
+	     * @param @param inputObject
+	     * @param @param outputObject
+	     * @param @throws Exception    参数
+	     * @return void    返回类型
+	     * @throws
+	 */
+	@RequestMapping("/post/KnowledgeContentController/editKnowledgeContentToCheck")
+	@ResponseBody
+	public void editKnowledgeContentToCheck(InputObject inputObject, OutputObject outputObject) throws Exception{
+		knowledgeContentService.editKnowledgeContentToCheck(inputObject, outputObject);
+	}
+	/**
+	 * 
+	     * @Title: queryCheckedKnowledgeContentList
+	     * @Description: 获取已经审核的知识库列表
+	     * @param @param inputObject
+	     * @param @param outputObject
+	     * @param @throws Exception    参数
+	     * @return void    返回类型
+	     * @throws
+	 */
+	@RequestMapping("/post/KnowledgeContentController/queryCheckedKnowledgeContentList")
+	@ResponseBody
+	public void queryCheckedKnowledgeContentList(InputObject inputObject, OutputObject outputObject) throws Exception{
+		knowledgeContentService.queryCheckedKnowledgeContentList(inputObject, outputObject);
+	}
+	
+	/**
+	 * 
+	     * @Title: queryUncheckedKnowledgeContent
+	     * @Description: 未审核知识库详情
+	     * @param @param inputObject
+	     * @param @param outputObject
+	     * @param @throws Exception    参数
+	     * @return void    返回类型
+	     * @throws
+	 */
+	@RequestMapping("/post/KnowledgeContentController/queryUncheckedKnowledgeContent")
+	@ResponseBody
+	public void queryUncheckedKnowledgeContent(InputObject inputObject, OutputObject outputObject) throws Exception{
+		knowledgeContentService.queryUncheckedKnowledgeContent(inputObject, outputObject);
+	}
+	
+	/**
+	 * 
+	     * @Title: queryCheckedKnowledgeContent
+	     * @Description: 已审核的知识库详情
+	     * @param @param inputObject
+	     * @param @param outputObject
+	     * @param @throws Exception    参数
+	     * @return void    返回类型
+	     * @throws
+	 */
+	@RequestMapping("/post/KnowledgeContentController/queryCheckedKnowledgeContent")
+	@ResponseBody
+	public void queryCheckedKnowledgeContent(InputObject inputObject, OutputObject outputObject) throws Exception{
+		knowledgeContentService.queryCheckedKnowledgeContent(inputObject, outputObject);
+	}
+	
+	/**
+	 * 
+	     * @Title: queryKnowledgeContentPhoneList
+	     * @Description: 手机端知识库列表
+	     * @param @param inputObject
+	     * @param @param outputObject
+	     * @param @throws Exception    参数
+	     * @return void    返回类型
+	     * @throws
+	 */
+	@RequestMapping("/post/KnowledgeContentController/queryKnowledgeContentPhoneList")
+	@ResponseBody
+	public void queryKnowledgeContentPhoneList(InputObject inputObject, OutputObject outputObject) throws Exception{
+		knowledgeContentService.queryKnowledgeContentPhoneList(inputObject, outputObject);
+	}
 }

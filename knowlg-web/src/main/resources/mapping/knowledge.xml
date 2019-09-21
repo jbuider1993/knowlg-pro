@@ -40,11 +40,16 @@
 	<url id="knowledgetype013" path="/post/KnowledgeTypeController/querySecondKnowledgeTypeUpStateList" val="获取上线的一级类型对应的上线的二级类型列表" allUse="2">
 		<property id="parentId" name="parentId" ref="required" var="类型id" />
 	</url>
+	<url id="knowledgetype014" path="/post/KnowledgeTypeController/queryAllSecondKnowledgeTypeStateList" val="获取所有的二级类型列表" allUse="2">
+		<property id="parentId" name="parentId" ref="" var="类型id" />
+	</url>
 	<url id="knowledgecontent001" path="/post/KnowledgeContentController/queryKnowledgeContentList" val="获取知识库列表" allUse="2">
 		<property id="limit" name="limit" ref="required,num" var="分页参数,每页多少条数据" />
 		<property id="page" name="page" ref="required,num" var="分页参数,第几页"/>
-		<property id="title" name="title" ref="" var="公告名称"/>
+		<property id="title" name="title" ref="" var="标题"/>
 		<property id="state" name="state" ref="" var="上线状态" />
+		<property id="firstType" name="typeId" ref="" var="一级类型"/>
+		<property id="secondTypeId" name="secondTypeId" ref="" var="二级类型" />
 	</url>
 	<url id="knowledgecontent002" path="/post/KnowledgeContentController/insertKnowledgeContentMation" val="新增知识库" allUse="2">
 		<property id="title" name="title" ref="required" var="知识库标题"/>
@@ -87,5 +92,38 @@
 		<property id="chunk" name="chunk" ref="required" var="分块上传，块下标" />
 		<property id="chunkSize" name="chunkSize" ref="required" var="分块上传时，块的大小，用于最后合并" />
 	</url>
-	
+	<url id="knowledgecontent010" path="/post/KnowledgeContentController/queryUnCheckedKnowledgeContentList" val="获取待审核的知识库列表" allUse="1">
+		<property id="limit" name="limit" ref="required,num" var="分页参数,每页多少条数据" />
+		<property id="page" name="page" ref="required,num" var="分页参数,第几页"/>
+		<property id="title" name="title" ref="" var="标题" />
+		<property id="typeId" name="typeId" ref="" var="一级类型" />
+		<property id="startTime" name="startTime" ref="" var="提交时间开始" />
+		<property id="endTime" name="endTime" ref="" var="提交时间结束" />
+	</url>
+	<url id="knowledgecontent011" path="/post/KnowledgeContentController/queryKnowledgeContentByIdToCheck" val="获取知识库信息用于回显审核" allUse="2">
+	    <property id="rowId" name="id" ref="required" var="知识库id"/>
+	</url>
+	<url id="knowledgecontent012" path="/post/KnowledgeContentController/editKnowledgeContentToCheck" val="审核知识库" allUse="1">
+		<property id="rowId" name="id" ref="required" var="知识库Id" />
+		<property id="examineState" name="examineState" ref="required" var="审核状态"/>
+		<property id="examineNopassReason" name="examineNopassReason" ref="" var="审核不通过原因" />
+	</url>
+	<url id="knowledgecontent013" path="/post/KnowledgeContentController/queryCheckedKnowledgeContentList" val="获取已经审核的知识库列表" allUse="1">
+		<property id="limit" name="limit" ref="required,num" var="分页参数,每页多少条数据" />
+		<property id="page" name="page" ref="required,num" var="分页参数,第几页"/>
+		<property id="title" name="title" ref="" var="标题" />
+		<property id="typeId" name="typeId" ref="" var="一级类型" />
+		<property id="startTime" name="startTime" ref="" var="提交时间开始" />
+		<property id="endTime" name="endTime" ref="" var="提交时间结束" />
+		<property id="examineStartTime" name="examineStartTime" ref="" var="审核时间开始" />
+		<property id="examineEndTime" name="examineEndTime" ref="" var="审核时间结束" />
+	</url>
+	<url id="knowledgecontent014" path="/post/KnowledgeContentController/queryUncheckedKnowledgeContent" val="未审核知识库详情" allUse="2">
+	    <property id="rowId" name="id" ref="required" var="知识库id"/>
+	</url>
+	<url id="knowledgecontent015" path="/post/KnowledgeContentController/queryCheckedKnowledgeContent" val="已审核知识库详情" allUse="2">
+	    <property id="rowId" name="id" ref="required" var="知识库id"/>
+	</url>
+	<url id="knowledgephone001" path="/post/KnowledgeContentController/queryKnowledgeContentPhoneList" val="手机端知识库列表" allUse="2">
+	</url>
 </controller>

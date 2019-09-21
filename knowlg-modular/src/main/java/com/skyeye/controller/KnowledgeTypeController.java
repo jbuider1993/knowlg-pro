@@ -208,4 +208,20 @@ public class KnowledgeTypeController {
 	public void querySecondKnowledgeTypeUpStateList(InputObject inputObject, OutputObject outputObject) throws Exception{
 		knowledgeTypeService.querySecondKnowledgeTypeUpStateList(inputObject, outputObject);
 	}
+	
+	/**
+	 * 
+	     * @Title: queryAllSecondKnowledgeTypeStateList
+	     * @Description: 获取所有的二级类型列表
+	     * @param @param inputObject
+	     * @param @param outputObject
+	     * @param @throws Exception    参数
+	     * @return void    返回类型
+	     * @throws
+	 */
+	@RequestMapping("/post/KnowledgeTypeController/queryAllSecondKnowledgeTypeStateList")
+	@ResponseBody
+	public void queryAllSecondKnowledgeTypeStateList(InputObject inputObject, OutputObject outputObject) throws Exception{
+		knowledgeTypeService.queryAllSecondKnowledgeTypeStateList(inputObject, outputObject);
+	}
 }

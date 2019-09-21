@@ -24,4 +24,18 @@ public interface KnowledgeContentDao {
 
 	public Map<String, Object> queryKnowledgeContentMationById(Map<String, Object> map) throws Exception;
 
+	public List<Map<String, Object>> queryUnCheckedKnowledgeContentList(Map<String, Object> map, PageBounds pageBounds) throws Exception;
+
+	public int editKnowledgeContentToCheck(Map<String, Object> map) throws Exception;
+
+	public Map<String, Object> queryKnowledgeContentByIdToCheck(Map<String, Object> map) throws Exception;
+
+	public List<Map<String, Object>> queryCheckedKnowledgeContentList(Map<String, Object> map, PageBounds pageBounds) throws Exception;
+
+	public Map<String, Object> queryUncheckedKnowledgeContent(Map<String, Object> map) throws Exception;
+
+	public Map<String, Object> queryCheckedKnowledgeContent(Map<String, Object> map) throws Exception;
+
+	public List<Map<String, Object>> queryKnowledgeContentPhoneList(Map<String, Object> map) throws Exception;
+
 }

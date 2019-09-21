@@ -197,7 +197,7 @@
 		FROM
 			knowlg_type a
 		WHERE 
-			a.state != 4
+			a.state = 2
 			AND a.parent_id = #{parentId}
 			ORDER BY a.order_by ASC
 	</select>
@@ -209,6 +209,18 @@
 			knowlg_type a
 		WHERE 
 			a.id = #{id}
+	</select>
+	
+	<select id="queryAllSecondKnowledgeTypeStateList" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+			a.id,
+			a.name
+		FROM
+			knowlg_type a
+		WHERE 
+			a.state != 4
+			AND a.parent_id = #{parentId}
+			ORDER BY a.order_by ASC
 	</select>
 	
 </mapper>

@@ -20,13 +20,21 @@
 			knowlg_content a
 			LEFT JOIN knowlg_type c ON a.type_id = c.id
 			LEFT JOIN knowlg_type d ON a.second_type_id = d.id
-		WHERE 1 = 1
+		WHERE 
+			a.create_id = #{userId}
 		<if test="title != '' and title != null">
 			AND a.title LIKE '%${title}%'
 		</if>
 		<if test="state != '' and state != null">
 			AND a.state = #{state}
 		</if>
+		<if test="typeId != '' and typeId != null">
+			AND a.type_id = #{typeId}
+		</if>
+		<if test="secondTypeId != '' and secondTypeId != null">
+			AND a.second_type_id = #{secondTypeId}
+		</if>
+		ORDER BY a.create_time DESC
 	</select>
 	
 	<select id="selectKnowledgeContentById" parameterType="java.util.Map" resultType="java.util.Map">
@@ -80,6 +88,154 @@
 			LEFT JOIN knowlg_type d ON a.second_type_id = d.id
 		WHERE
 			a.id = #{id}
+	</select>
+	
+	<select id="queryUnCheckedKnowledgeContentList" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+			a.id,
+			a.title,
+			c.`name` typeName,
+			d.`name` secondTypeName,
+			date_format(a.create_time, '%Y-%m-%d %k:%i') createTime
+		FROM
+			knowlg_content a
+		LEFT JOIN knowlg_type c ON a.type_id = c.id
+		LEFT JOIN knowlg_type d ON a.second_type_id = d.id
+		WHERE
+			a.state = '1'
+		<if test="title != '' and title != null">
+			AND a.title LIKE '%${title}%'
+		</if>
+		<if test="typeId != '' and typeId != null">
+			AND a.type_id = #{typeId}
+		</if>
+		<if test="startTime != '' and startTime != null and endTime != '' and endTime != null">
+			AND a.create_time >= #{startTime} AND #{endTime} >= a.create_time
+		</if>
+		ORDER BY a.create_time DESC
+	</select>
+	
+	<select id="queryKnowledgeContentByIdToCheck" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+			a.id,
+			a.title,
+			c.`name` typeName,
+			d.`name` secondTypeName,
+			a.content
+		FROM
+			knowlg_content a
+		LEFT JOIN knowlg_type c ON a.type_id = c.id
+		LEFT JOIN knowlg_type d ON a.second_type_id = d.id
+		WHERE
+			a.id = #{id}
+	</select>
+	
+	<update id="editKnowledgeContentToCheck" parameterType="java.util.Map">
+		UPDATE knowlg_content
+		<set>
+			examine_id = #{examineId},
+			examine_time = #{examineTime},
+			state = #{examineState},
+			examine_nopass_reason = #{examineNopassReason}
+		</set>
+		WHERE id = #{id}
+	</update>
+	
+	<select id="queryCheckedKnowledgeContentList" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+			a.id,
+			a.title,
+			c.`name` typeName,
+			d.`name` secondTypeName,
+			date_format(a.create_time, '%Y-%m-%d %k:%i') createTime,
+			b.user_name examineUser,
+			date_format(a.examine_time, '%Y-%m-%d %k:%i') examineTime,
+			a.state
+		FROM
+			sys_eve_user_staff b,
+			knowlg_content a
+		LEFT JOIN knowlg_type c ON a.type_id = c.id
+		LEFT JOIN knowlg_type d ON a.second_type_id = d.id
+		WHERE
+			a.state != '1'
+		AND b.user_id = a.examine_id
+		<if test="title != '' and title != null">
+			AND a.title LIKE '%${title}%'
+		</if>
+		<if test="typeId != '' and typeId != null">
+			AND a.type_id = #{typeId}
+		</if>
+		<if test="startTime != '' and startTime != null and endTime != '' and endTime != null">
+			AND a.create_time >= #{startTime} AND #{endTime} >= a.create_time
+		</if>     
+		<if test="examineStartTime != '' and examineStartTime != null and examineEndTime != '' and examineEndTime != null">
+			AND a.examine_time >= #{examineStartTime} AND #{examineEndTime} >= a.examine_time
+		</if>
+		ORDER BY a.create_time DESC
+	</select>
+	
+	<select id="queryUncheckedKnowledgeContent" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+			a.id,
+			a.title,
+			a.`desc`,
+			CASE a.state WHEN '1' THEN '审核中' WHEN '2' THEN '审核通过' WHEN '3' THEN '审核不通过' END state,
+			CASE a.state WHEN '1' THEN 'state-new' WHEN '2' THEN 'state-up' WHEN '3' THEN 'state-down' END colorClass,
+			c.`name` typeName,
+			d.`name` secondTypeName,
+			a.content,
+			b.user_name createName,
+			DATE_FORMAT(a.create_time,'%Y-%m-%d %k:%i') createTime
+		FROM
+			sys_eve_user_staff b,
+			knowlg_content a
+		LEFT JOIN knowlg_type c ON a.type_id = c.id
+		LEFT JOIN knowlg_type d ON a.second_type_id = d.id
+		WHERE
+			a.id = #{id}
+		AND b.user_id = a.create_id
+	</select>
+	
+	<select id="queryCheckedKnowledgeContent" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+			a.id,
+			a.title,
+			a.`desc`,
+			CASE a.state WHEN '1' THEN '审核中' WHEN '2' THEN '审核通过' WHEN '3' THEN '审核不通过' END state,
+			CASE a.state WHEN '1' THEN 'state-new' WHEN '2' THEN 'state-up' WHEN '3' THEN 'state-down' END colorClass,
+			c.`name` typeName,
+			d.`name` secondTypeName,
+			a.content,
+			a.examine_nopass_reason examineNopassReason,
+			e.user_name examineName,
+			DATE_FORMAT(a.examine_time,'%Y-%m-%d %k:%i') examineTime,
+			a.read_num readNum,
+			b.user_name createName,
+			DATE_FORMAT(a.create_time,'%Y-%m-%d %k:%i') createTime
+		FROM
+			sys_eve_user_staff e,
+			sys_eve_user_staff b,
+			knowlg_content a
+		LEFT JOIN knowlg_type c ON a.type_id = c.id
+		LEFT JOIN knowlg_type d ON a.second_type_id = d.id
+		WHERE
+			a.id = #{id}
+		AND b.user_id = a.create_id
+		AND a.examine_id = e.user_id
+	</select>
+	
+	<select id="queryKnowledgeContentPhoneList" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+			a.id,
+			a.title,
+			DATE_FORMAT(a.create_time,'%Y-%m-%d %k:%i') createTime
+		FROM
+			knowlg_content a
+		WHERE
+			a.state = 2
+		ORDER BY
+			a.create_time DESC
+		LIMIT 20
 	</select>
 	
 </mapper>
