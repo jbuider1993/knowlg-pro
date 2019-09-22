@@ -94,20 +94,41 @@
 		SELECT
 			a.id,
 			a.title,
-			c.`name` typeName,
-			d.`name` secondTypeName,
-			date_format(a.create_time, '%Y-%m-%d %k:%i') createTime
+			a.typeName,
+			a.secondTypeName,
+			a.createTime,
+			a.createUser
 		FROM
-			knowlg_content a
-		LEFT JOIN knowlg_type c ON a.type_id = c.id
-		LEFT JOIN knowlg_type d ON a.second_type_id = d.id
-		WHERE
-			a.state = '1'
+			(SELECT
+				a.id,
+				a.title,
+				a.type_id,
+				a.second_type_id,
+				c.`name` typeName,
+				d.`name` secondTypeName,
+				a.create_time,
+				date_format(a.create_time,'%Y-%m-%d %k:%i') createTime,
+				b.user_name createUser
+			FROM
+				sys_eve_user_staff b,
+				knowlg_content a
+			LEFT JOIN knowlg_type c ON a.type_id = c.id
+			LEFT JOIN knowlg_type d ON a.second_type_id = d.id
+			WHERE
+				a.state = '1'
+			AND a.create_id = b.user_id) a
+		WHERE 1 = 1
 		<if test="title != '' and title != null">
 			AND a.title LIKE '%${title}%'
 		</if>
 		<if test="typeId != '' and typeId != null">
 			AND a.type_id = #{typeId}
+		</if>
+		<if test="secondTypeId != '' and secondTypeId != null">
+			AND a.second_type_id = #{secondTypeId}
+		</if>
+		<if test="createUser != '' and createUser != null">
+			AND a.createUser like '%${createUser}%'
 		</if>
 		<if test="startTime != '' and startTime != null and endTime != '' and endTime != null">
 			AND a.create_time >= #{startTime} AND #{endTime} >= a.create_time
@@ -145,25 +166,53 @@
 		SELECT
 			a.id,
 			a.title,
-			c.`name` typeName,
-			d.`name` secondTypeName,
-			date_format(a.create_time, '%Y-%m-%d %k:%i') createTime,
-			b.user_name examineUser,
-			date_format(a.examine_time, '%Y-%m-%d %k:%i') examineTime,
+			a.typeName,
+			a.secondTypeName,
+			a.createUser,
+			a.createTime,
+			a.examineUser,
+			a.examineTime,
 			a.state
 		FROM
-			sys_eve_user_staff b,
-			knowlg_content a
-		LEFT JOIN knowlg_type c ON a.type_id = c.id
-		LEFT JOIN knowlg_type d ON a.second_type_id = d.id
-		WHERE
-			a.state != '1'
-		AND b.user_id = a.examine_id
+			(SELECT
+				a.id,
+				a.title,
+				c.`name` typeName,
+				d.`name` secondTypeName,
+				a.type_id,
+				a.second_type_id,
+				e.user_name createUser,
+				date_format(a.create_time,'%Y-%m-%d %k:%i') createTime,
+				b.user_name examineUser,
+				a.create_time,
+				a.examine_time,
+				date_format(a.examine_time,'%Y-%m-%d %k:%i') examineTime,
+				a.state
+			FROM
+				sys_eve_user_staff e,
+				sys_eve_user_staff b,
+				knowlg_content a
+			LEFT JOIN knowlg_type c ON a.type_id = c.id
+			LEFT JOIN knowlg_type d ON a.second_type_id = d.id
+			WHERE
+				a.state != '1'
+			AND b.user_id = a.examine_id
+			AND e.user_id = a.create_id) a
+		WHERE 1 = 1
 		<if test="title != '' and title != null">
 			AND a.title LIKE '%${title}%'
 		</if>
+		<if test="state != '' and state != null">
+			AND a.state = #{state}
+		</if>
 		<if test="typeId != '' and typeId != null">
 			AND a.type_id = #{typeId}
+		</if>
+		<if test="secondTypeId != '' and secondTypeId != null">
+			AND a.second_type_id = #{secondTypeId}
+		</if>
+		<if test="createUser != '' and createUser != null">
+			AND a.createUser like '%${createUser}%'
 		</if>
 		<if test="startTime != '' and startTime != null and endTime != '' and endTime != null">
 			AND a.create_time >= #{startTime} AND #{endTime} >= a.create_time
@@ -228,7 +277,7 @@
 		SELECT
 			a.id,
 			a.title,
-			DATE_FORMAT(a.create_time,'%Y-%m-%d %k:%i') createTime
+			DATE_FORMAT(a.create_time,'%Y-%m-%d') createTime
 		FROM
 			knowlg_content a
 		WHERE
@@ -236,6 +285,20 @@
 		ORDER BY
 			a.create_time DESC
 		LIMIT 20
+	</select>
+	
+	<select id="queryKnowledgeContentPhoneBySecondtypeId" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+			a.id,
+			a.title,
+			a.`desc`,
+			b.`name`
+		FROM
+			knowlg_content a,
+			knowlg_type b
+		WHERE
+			a.second_type_id = #{id}
+		AND a.second_type_id = b.id
 	</select>
 	
 </mapper>

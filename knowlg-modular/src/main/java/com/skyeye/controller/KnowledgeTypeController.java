@@ -211,17 +211,18 @@ public class KnowledgeTypeController {
 	
 	/**
 	 * 
-	     * @Title: queryAllSecondKnowledgeTypeStateList
-	     * @Description: 获取所有的二级类型列表
+	     * @Title: queryKnowledgeTypeUpStateListToPhoneShow
+	     * @Description: 获取所有的已经上线的一级二级类型名称列表用于手机端
 	     * @param @param inputObject
 	     * @param @param outputObject
 	     * @param @throws Exception    参数
 	     * @return void    返回类型
 	     * @throws
 	 */
-	@RequestMapping("/post/KnowledgeTypeController/queryAllSecondKnowledgeTypeStateList")
+	@RequestMapping("/post/KnowledgeTypeController/queryKnowledgeTypeUpStateListToPhoneShow")
 	@ResponseBody
-	public void queryAllSecondKnowledgeTypeStateList(InputObject inputObject, OutputObject outputObject) throws Exception{
-		knowledgeTypeService.queryAllSecondKnowledgeTypeStateList(inputObject, outputObject);
+	public void queryKnowledgeTypeUpStateListToPhoneShow(InputObject inputObject, OutputObject outputObject) throws Exception{
+		knowledgeTypeService.queryKnowledgeTypeUpStateListToPhoneShow(inputObject, outputObject);
 	}
+
 }

@@ -72,7 +72,7 @@ layui.config({
 		loadFirstType = true;
 		showGrid({
 		 	id: "firstType",
-		 	url: reqBasePath + "knowledgetype012",
+		 	url: reqBasePath + "knowledgetype011",
 		 	params: {},
 		 	pagination: false,
 		 	template: getFileContent('tpl/template/select-option.tpl'),
@@ -87,7 +87,7 @@ layui.config({
 	function initsecondType(){
 		showGrid({
 		 	id: "secondTypeId",
-		 	url: reqBasePath + "knowledgetype014",
+		 	url: reqBasePath + "knowledgetype013",
 		 	params: {parentId: firstType},
 		 	pagination: false,
 		 	template: getFileContent('tpl/template/select-option.tpl'),

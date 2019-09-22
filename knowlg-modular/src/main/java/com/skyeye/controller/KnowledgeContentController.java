@@ -270,4 +270,20 @@ public class KnowledgeContentController {
 	public void queryKnowledgeContentPhoneList(InputObject inputObject, OutputObject outputObject) throws Exception{
 		knowledgeContentService.queryKnowledgeContentPhoneList(inputObject, outputObject);
 	}
+	
+	/**
+	 * 
+	     * @Title: queryKnowledgeContentPhoneBySecondtypeId
+	     * @Description: 手机端知识库二级类型下的所有知识库
+	     * @param @param inputObject
+	     * @param @param outputObject
+	     * @param @throws Exception    参数
+	     * @return void    返回类型
+	     * @throws
+	 */
+	@RequestMapping("/post/KnowledgeContentController/queryKnowledgeContentPhoneBySecondtypeId")
+	@ResponseBody
+	public void queryKnowledgeContentPhoneBySecondtypeId(InputObject inputObject, OutputObject outputObject) throws Exception{
+		knowledgeContentService.queryKnowledgeContentPhoneBySecondtypeId(inputObject, outputObject);
+	}
 }

@@ -109,7 +109,7 @@ layui.config({
 			url: "../../tpl/knowledgetype/knowledgetypeadd.html", 
 			title: "新增类型",
 			pageId: "knowledgetypeadd",
-			area: ['500px', '40vh'],
+			area: ['60vw', '60vh'],
 			callBack: function(refreshCode){
                 if (refreshCode == '0') {
                 	winui.window.msg("操作成功", {icon: 1,time: 2000});

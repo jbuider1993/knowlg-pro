@@ -29,6 +29,6 @@ public interface KnowledgeTypeService {
 
 	public void querySecondKnowledgeTypeUpStateList(InputObject inputObject, OutputObject outputObject) throws Exception;
 
-	public void queryAllSecondKnowledgeTypeStateList(InputObject inputObject,OutputObject outputObject) throws Exception;
+	public void queryKnowledgeTypeUpStateListToPhoneShow(InputObject inputObject, OutputObject outputObject) throws Exception;
 
 }

@@ -22,34 +22,32 @@ layui.config({
 	    page: false,
 	    cols: [[
 	        { field: 'title', title: '', align: 'left', width: "calc(100% - 90px)", templet: function(d){
-        		return "<a style='' lay-event='details'>" + d.title + "</a>";
+        		return "<a style='' rowid='" + d.id + "' class='details'>" + d.title + "</a>";
 	        }},
 	        { field: 'createTime', title: '', align: 'center', width: 90 },
 	    ]],
 	    done: function(){
 	    	$("#messageTable").parent().find("div[class='layui-table-header']").remove();
 	    	var tbody = $("#messageTable").parent().find("div[class='layui-table-box']");
-	    	tbody.find("td[data-field='title']").css({width: tbody.width() - 90});
+	    	tbody.find("td[data-field='title']").css({width: $("body").width() - 90 - 16});
+	    	tbody.find("td[data-field='title']>div").css({width: $("body").width() - 90 - 16});
+	    	$(".layui-table-cell").css({padding: 0});
 	    	tbody.find('td').css({
 	    		'border-right': 'none'
 	    	});
 	    	tbody.parent().css({
 	    		'border': 'none'
 	    	});
-	    	parent.$("#newKnowledge").height($("body").height());
+	    	console.log($("body").width())
+	    	parent.$("#newKnowledge").height(tbody.height());
 	    }
 	});
 	
-	table.on('tool(messageTable)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
-        var data = obj.data; //获得当前行数据
-        var layEvent = obj.event; //获得 lay-event 对应的值
-        if (layEvent === 'details') { //详情
-        	parent.rowId = data.id;
-        	parent.$(".content-detail-show").animate({left: '0px'});
-        	parent.$("#contentShow").attr("src", "details.html");
-        }
-    });
-	
+	$("body").on("click", ".details", function(e){
+		parent.rowId = $(this).attr("rowid");
+    	parent.$(".content-detail-show").animate({left: '0px'});
+    	parent.$("#contentShow").attr("src", "details.html");
+	});
 	
     exports('phonepagemain', {});
 });

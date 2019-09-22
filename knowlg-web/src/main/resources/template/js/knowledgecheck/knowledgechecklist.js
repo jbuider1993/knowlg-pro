@@ -17,8 +17,10 @@ layui.config({
 		table = layui.table,
 		laydate = layui.laydate;
 	
-	var typeId = "";//未审核的一级类型搜索
-	var checkedtypeId = "";//已审核的一级类型搜索
+	var typeId = "";//未审核的一级类型
+	var secondTypeId = "";//未审核的二级类型
+	var checkedtypeId = "";//已审核的一级类型
+	var secondCheckedtypeId = "";//已审核的二级类型
 	
 	//未审核表的提交时间
 	laydate.render({
@@ -78,25 +80,6 @@ layui.config({
     		}
 		}
 	});
-	
-	//未审核的一级类型搜索
-	showGrid({
-	 	id: "typeId",
-	 	url: reqBasePath + "knowledgetype011",
-	 	params: {},
-	 	pagination: false,
-	 	template: getFileContent('tpl/template/select-option.tpl'),
-	 	ajaxSendLoadBefore: function(hdb){
-	 	},
-	 	ajaxSendAfter:function(json){
-	 		form.render('select');
-	 	}
-	});
-	
-	form.on('select(typeId)', function(data){
-		typeId = data.value;
-	});
-	
 	//未审核
 	function showNoCheckList(){
 		showNoCheckTable = true;
@@ -106,7 +89,7 @@ layui.config({
 		    elem: '#messageNoCheckTable',
 		    method: 'post',
 		    url: reqBasePath + 'knowledgecontent010',
-		    where: {title:$("#title").val(),typeId: typeId, startTime:startTime, endTime:endTime},
+		    where: {title:$("#title").val(),typeId: typeId, secondTypeId: secondTypeId, createUser: $("#createUser").val(), startTime: startTime, endTime: endTime},
 		    even: true,  //隔行变色
 		    page: true,
 		    limits: [8, 16, 24, 32, 40, 48, 56],
@@ -116,10 +99,14 @@ layui.config({
 		        { field: 'title', title: '标题', align: 'center', width: 250 },
 		        { field: 'typeName', title: '一级类型', align: 'center', width: 120 },
 		        { field: 'secondTypeName', title: '二级类型', align: 'center', width: 120 },
+		        { field: 'createUser', title: '提交人', align: 'center', width: 120},
 		        { field: 'createTime', title: '提交时间', align: 'center', width: 200},
 		        { title: '操作', fixed: 'right', align: 'center', width: 250, toolbar: '#tableBar'}
 		    ]],
 		    done: function(){
+		    	if(!loadFirstType){
+		    		initFirstType();
+		    	}
 		    }
 		});
 	};
@@ -129,11 +116,58 @@ layui.config({
 		var layEvent = obj.event; //获得 lay-event 对应的值
 		if (layEvent === 'check') { //审核
 			check(data);
-		}else if (layEvent === 'detail') { //举报详情
+		}else if (layEvent === 'detail') { //详情
 			detail(data);
-		}else if (layEvent === 'forumdetails') { //帖子详情
-			forumdetails(data);
 		}
+	});
+	
+	var loadFirstType = false;
+	//初始化一级类型
+	function initFirstType(){
+		loadFirstType = true;
+		showGrid({
+			id: "typeId",
+			url: reqBasePath + "knowledgetype011",
+			params: {},
+			pagination: false,
+			template: getFileContent('tpl/template/select-option.tpl'),
+			ajaxSendLoadBefore: function(hdb){},
+			ajaxSendAfter:function(json){
+				form.render('select');
+			}
+		});
+	}
+	
+	//初始化二级类型
+	function initSecondType(){
+		showGrid({
+			id: "secondTypeId",
+			url: reqBasePath + "knowledgetype013",
+			params: {parentId: typeId},
+			pagination: false,
+			template: getFileContent('tpl/template/select-option.tpl'),
+			ajaxSendLoadBefore: function(hdb){},
+			ajaxSendAfter:function(json){
+				form.render('select');
+			}
+		});
+	}
+	
+	//一级类型监听事件
+	form.on('select(typeId)', function(data){
+		typeId = data.value;
+		secondTypeId = "";
+		if(!isNull(typeId)){
+			initSecondType();
+		}else{
+			$("#secondTypeId").html("");
+			form.render('select');
+		}
+	});
+	
+	//二级类型监听事件
+	form.on('select(secondTypeId)', function(data){
+		secondTypeId = data.value;
 	});
 	
 	form.render();
@@ -155,7 +189,7 @@ layui.config({
 			startTime = "";
 			endTime = "";
 		}
-		table.reload("messageNoCheckTable", {where:{title:$("#title").val(),typeId: typeId, startTime:startTime, endTime:endTime}});
+		table.reload("messageNoCheckTable", {where:{title:$("#title").val(),typeId: typeId, secondTypeId: secondTypeId, createUser: $("#createUser").val(), startTime:startTime, endTime:endTime}});
 	};
 	
 	function refreshTable(){
@@ -166,7 +200,7 @@ layui.config({
 			startTime = "";
 			endTime = "";
 		}
-		table.reload("messageNoCheckTable", {page: {curr: 1}, where:{title:$("#title").val(),typeId: typeId, startTime:startTime, endTime:endTime}});
+		table.reload("messageNoCheckTable", {page: {curr: 1}, where:{title:$("#title").val(),typeId: typeId, secondTypeId: secondTypeId, createUser: $("#createUser").val(), startTime:startTime, endTime:endTime}});
 	};
 	
 	//审核
@@ -214,7 +248,7 @@ layui.config({
 		    elem: '#messageCheckedTable',
 		    method: 'post',
 		    url: reqBasePath + 'knowledgecontent013',
-		    where: {title:$("#checkedtitle").val(),typeId: checkedtypeId, startTime:firstTime, endTime:lastTime, examineStartTime:theFirstTime, examineEndTime:theLastTime},
+		    where: {title:$("#checkedtitle").val(), state:$("#state").val(), typeId: checkedtypeId, secondTypeId:secondCheckedtypeId, createName: $("#createName").val(), startTime:firstTime, endTime:lastTime, examineStartTime:theFirstTime, examineEndTime:theLastTime},
 		    even: true,  //隔行变色
 		    page: true,
 		    limits: [8, 16, 24, 32, 40, 48, 56],
@@ -224,8 +258,7 @@ layui.config({
 		        { field: 'title', title: '标题', align: 'center', width: 250},
 		        { field: 'typeName', title: '一级类型', align: 'center', width: 120 },
 		        { field: 'secondTypeName', title: '二级类型', align: 'center', width: 120 },
-		        { field: 'createTime', title: '提交时间', align: 'center', width: 200},
-		        { field: 'state', title: '状态', width: 100, align: 'center', templet: function(d){
+		        { field: 'state', title: '状态', width: 80, align: 'center', templet: function(d){
 		        	if(d.state == '2'){
 		        		return "<span class='state-up'>已通过</span>";
 		        	}else if(d.state == '3'){
@@ -234,11 +267,16 @@ layui.config({
 		        		return "参数错误";
 		        	}
 		        }},
-		        { field: 'examineUser', title: '审核人', align: 'center', width: 180},
-		        { field: 'examineTime', title: '审核时间', align: 'center', width: 200},
+		        { field: 'createUser', title: '提交人', align: 'center', width: 80},
+		        { field: 'createTime', title: '提交时间', align: 'center', width: 130},
+		        { field: 'examineUser', title: '审核人', align: 'center', width: 80},
+		        { field: 'examineTime', title: '审核时间', align: 'center', width: 130},
 		        { title: '操作', fixed: 'right', align: 'center', width: 250, toolbar: '#checkedTableBar'}
 		    ]],
 		    done: function(){
+		    	if(!loadCheckedType){
+		    		initCheckedType();
+		    	}
 		    }
 		});
 	};
@@ -250,6 +288,56 @@ layui.config({
         	checkeddetail(data);
         }
     });
+	
+
+	var loadCheckedType = false;
+	//初始化一级类型
+	function initCheckedType(){
+		loadCheckedType = true;
+		showGrid({
+			id: "checkedtypeId",
+			url: reqBasePath + "knowledgetype011",
+			params: {},
+			pagination: false,
+			template: getFileContent('tpl/template/select-option.tpl'),
+			ajaxSendLoadBefore: function(hdb){},
+			ajaxSendAfter:function(json){
+				form.render('select');
+			}
+		});
+	}
+	
+	//初始化二级类型
+	function initSecondCheckedType(){
+		showGrid({
+			id: "secondCheckedtypeId",
+			url: reqBasePath + "knowledgetype013",
+			params: {parentId: checkedtypeId},
+			pagination: false,
+			template: getFileContent('tpl/template/select-option.tpl'),
+			ajaxSendLoadBefore: function(hdb){},
+			ajaxSendAfter:function(json){
+				form.render('select');
+			}
+		});
+	}
+	
+	//一级类型监听事件
+	form.on('select(checkedtypeId)', function(data){
+		checkedtypeId = data.value;
+		secondCheckedtypeId = "";
+		if(!isNull(checkedtypeId)){
+			initSecondCheckedType();
+		}else{
+			$("#secondCheckedtypeId").html("");
+			form.render('select');
+		}
+	});
+	
+	//二级类型监听事件
+	form.on('select(secondCheckedtypeId)', function(data){
+		secondCheckedtypeId = data.value;
+	});
 	
 
 	//已审核详情
@@ -268,24 +356,6 @@ layui.config({
                 }
 			}});
 	};
-	
-	//一级类型搜索
-	showGrid({
-	 	id: "checkedtypeId",
-	 	url: reqBasePath + "knowledgetype011",
-	 	params: {},
-	 	pagination: false,
-	 	template: getFileContent('tpl/template/select-option.tpl'),
-	 	ajaxSendLoadBefore: function(hdb){
-	 	},
-	 	ajaxSendAfter:function(json){
-	 		form.render('select');
-	 	}
-	});
-
-    form.on('select(checkedtypeId)', function(data){
-		checkedtypeId = data.value;
-	});
     
 	//搜索表单
 	$("body").on("click", "#formCheckedSearch", function(){
@@ -298,12 +368,12 @@ layui.config({
     
     function loadCheckedTable(){
     	getTime();
-    	table.reload("messageCheckedTable", {where:{title:$("#checkedtitle").val(),typeId: checkedtypeId, startTime:firstTime, endTime:lastTime, examineStartTime:theFirstTime, examineEndTime:theLastTime}});
+    	table.reload("messageCheckedTable", {where:{title:$("#checkedtitle").val(), state:$("#state").val(),typeId: checkedtypeId, secondTypeId:secondCheckedtypeId, createName: $("#createName").val(), startTime:firstTime, endTime:lastTime, examineStartTime:theFirstTime, examineEndTime:theLastTime}});
     };
     
     function refreshCheckedTable(){
 		getTime();
-    	table.reload("messageCheckedTable", {page: {curr: 1}, where:{title:$("#checkedtitle").val(),typeId: checkedtypeId, startTime:firstTime, endTime:lastTime, examineStartTime:theFirstTime, examineEndTime:theLastTime}});
+    	table.reload("messageCheckedTable", {page: {curr: 1}, where:{title:$("#checkedtitle").val(), state:$("#state").val(),typeId: checkedtypeId, secondTypeId:secondCheckedtypeId, createName: $("#createName").val(), startTime:firstTime, endTime:lastTime, examineStartTime:theFirstTime, examineEndTime:theLastTime}});
     };
     
     function getTime(){

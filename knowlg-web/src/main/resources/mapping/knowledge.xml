@@ -38,9 +38,6 @@
 	<url id="knowledgetype012" path="/post/KnowledgeTypeController/queryAllFirstKnowledgeTypeStateList" val="获取所有的一级类型列表" allUse="2">
 	</url>
 	<url id="knowledgetype013" path="/post/KnowledgeTypeController/querySecondKnowledgeTypeUpStateList" val="获取上线的一级类型对应的上线的二级类型列表" allUse="2">
-		<property id="parentId" name="parentId" ref="required" var="类型id" />
-	</url>
-	<url id="knowledgetype014" path="/post/KnowledgeTypeController/queryAllSecondKnowledgeTypeStateList" val="获取所有的二级类型列表" allUse="2">
 		<property id="parentId" name="parentId" ref="" var="类型id" />
 	</url>
 	<url id="knowledgecontent001" path="/post/KnowledgeContentController/queryKnowledgeContentList" val="获取知识库列表" allUse="2">
@@ -97,6 +94,8 @@
 		<property id="page" name="page" ref="required,num" var="分页参数,第几页"/>
 		<property id="title" name="title" ref="" var="标题" />
 		<property id="typeId" name="typeId" ref="" var="一级类型" />
+		<property id="secondTypeId" name="secondTypeId" ref="" var="二级类型" />
+		<property id="createUser" name="createUser" ref="" var="提交人" />
 		<property id="startTime" name="startTime" ref="" var="提交时间开始" />
 		<property id="endTime" name="endTime" ref="" var="提交时间结束" />
 	</url>
@@ -112,7 +111,10 @@
 		<property id="limit" name="limit" ref="required,num" var="分页参数,每页多少条数据" />
 		<property id="page" name="page" ref="required,num" var="分页参数,第几页"/>
 		<property id="title" name="title" ref="" var="标题" />
+		<property id="state" name="state" ref="" var="上线状态" />
 		<property id="typeId" name="typeId" ref="" var="一级类型" />
+		<property id="secondTypeId" name="secondTypeId" ref="" var="二级类型" />
+		<property id="createName" name="createUser" ref="" var="提交人" />
 		<property id="startTime" name="startTime" ref="" var="提交时间开始" />
 		<property id="endTime" name="endTime" ref="" var="提交时间结束" />
 		<property id="examineStartTime" name="examineStartTime" ref="" var="审核时间开始" />
@@ -125,5 +127,10 @@
 	    <property id="rowId" name="id" ref="required" var="知识库id"/>
 	</url>
 	<url id="knowledgephone001" path="/post/KnowledgeContentController/queryKnowledgeContentPhoneList" val="手机端知识库列表" allUse="2">
+	</url>
+	<url id="knowledgephone002" path="/post/KnowledgeTypeController/queryKnowledgeTypeUpStateListToPhoneShow" val="获取所有的已经上线的一级二级类型名称列表用于手机端" allUse="2">
+	</url>
+	<url id="knowledgephone003" path="/post/KnowledgeContentController/queryKnowledgeContentPhoneBySecondtypeId" val="手机端知识库二级类型下的所有知识库" allUse="2">
+		<property id="rowId" name="id" ref="required" var="二级类型Id" />
 	</url>
 </controller>

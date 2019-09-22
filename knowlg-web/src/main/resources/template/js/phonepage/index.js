@@ -1,6 +1,7 @@
 ﻿
 //搜索内容
 var searchName = "";
+var typeId = "";
 
 //知识库详情id,通过子页面赋值
 var rowId = "";
@@ -17,7 +18,18 @@ layui.config({
 	var $ = layui.$,
 		form = layui.form;
 	
-	
+	var beanTemplate = $('#beanTemplate').html();
+	//初始化数据
+    showGrid({
+        id: "showBean",
+        url: reqBasePath + "knowledgephone002",
+        params: {},
+        pagination: false,
+        template: beanTemplate,
+        ajaxSendAfter:function(json){
+        }
+    });
+
 	$("body").on("click", "#menuCheck", function(e){
 		var _this = $(this).find("i");
 		if(_this.hasClass("fa-outdent")){//展开
@@ -56,10 +68,13 @@ layui.config({
 		$(".type-search-show").hide();
 		//重置搜索内容为空
 		$("#searchName").val("");
+		//显示搜索按钮
+		$(".search-box").show();
 	});
 	
 	//分类
 	$("body").on("click", ".know-type-ul .checkTypeItem", function(e){
+		typeId = $(this).attr("id");
 		//隐藏菜单
 		$("#menuCheck").find("i").removeClass("fa-indent").addClass("fa-outdent");
 		$(".know-type-box").animate({left: '100%'});

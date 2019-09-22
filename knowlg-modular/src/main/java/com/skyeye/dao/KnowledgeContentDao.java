@@ -38,4 +38,6 @@ public interface KnowledgeContentDao {
 
 	public List<Map<String, Object>> queryKnowledgeContentPhoneList(Map<String, Object> map) throws Exception;
 
+	public List<Map<String, Object>> queryKnowledgeContentPhoneBySecondtypeId(Map<String, Object> map) throws Exception;
+
 }

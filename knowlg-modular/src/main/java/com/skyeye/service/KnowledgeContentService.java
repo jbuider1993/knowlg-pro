@@ -37,4 +37,6 @@ public interface KnowledgeContentService {
 
 	public void queryKnowledgeContentPhoneList(InputObject inputObject, OutputObject outputObject) throws Exception;
 
+	public void queryKnowledgeContentPhoneBySecondtypeId(InputObject inputObject, OutputObject outputObject) throws Exception;
+
 }

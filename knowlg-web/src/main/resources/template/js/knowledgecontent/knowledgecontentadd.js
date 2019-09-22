@@ -33,7 +33,7 @@ layui.config({
 	        }
 	    };
 	    
-	    //初始化一级公告类型
+	    //初始化一级类型
 		function initNoticeTypeId(){
 			showGrid({
 			 	id: "typeId",
@@ -47,7 +47,7 @@ layui.config({
 			 	}
 		    });
 		}
-		//初始化二级公告类型
+		//初始化二级类型
 		function initSecondTypeId(){
 			showGrid({
 			 	id: "secondTypeId",
@@ -62,13 +62,13 @@ layui.config({
 		    });
 		}
 		
-		//一级公告类型监听事件
+		//一级类型监听事件
 		form.on('select(typeId)', function(data){
 			typeId = data.value;
 			secondTypeId = "";
 			initSecondTypeId();
 		});
-		//二级公告类型监听事件
+		//二级类型监听事件
 		form.on('select(secondTypeId)', function(data){
 			secondTypeId = data.value;
 		});
@@ -85,11 +85,11 @@ layui.config({
  	        		content: encodeURIComponent(ue.getContent())
  	        	};
  	        	if(isNull(params.typeId)){
- 	        		winui.window.msg('请选择一级公告类型', {icon: 2,time: 2000});
+ 	        		winui.window.msg('请选择一级类型', {icon: 2,time: 2000});
  	        		return false;
  	        	}
  	        	if(isNull(params.secondTypeId)){
- 	        		winui.window.msg('请选择二级公告类型', {icon: 2,time: 2000});
+ 	        		winui.window.msg('请选择二级类型', {icon: 2,time: 2000});
  	        		return false;
  	        	}
  	        	if(isNull($("#desc").val())){

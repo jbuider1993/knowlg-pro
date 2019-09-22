@@ -30,6 +30,16 @@
 
 								</select>
 							</div>
+							<label class="layui-form-label">二级类型</label>
+							<div class="layui-input-inline">
+								<select id="secondTypeId" name="secondTypeId" lay-filter="secondTypeId" lay-search="">
+
+								</select>
+							</div>
+							<label class="layui-form-label">提交人</label>
+							<div class="layui-input-inline">
+								<input type="text" id="createUser" name="createUser" placeholder="请输入提交人姓名" class="layui-input" />
+							</div>
 							<label class="layui-form-label">提交时间</label>
 							<div class="layui-input-inline">
 								<input type="text" id="createTime" name="createTime" placeholder="请输入知识库提交时间" class="layui-input" />
@@ -66,11 +76,29 @@
 							<div class="layui-input-inline">
 								<input type="text" id="checkedtitle" name="checkedtitle" placeholder="请输入知识库标题" class="layui-input" />
 							</div>
+							<label class="layui-form-label">状态</label>
+			                <div class="layui-input-inline">
+			                    <select id="state">
+			                    	<option value="">全部</option>
+			                    	<option value="2">审核通过</option>
+			                    	<option value="3">审核不通过</option>
+			                    </select>
+			                </div>
 							<label class="layui-form-label">一级类型</label>
 							<div class="layui-input-inline">
 								<select id="checkedtypeId" name="checkedtypeId" lay-filter="checkedtypeId" lay-search="">
 
 								</select>
+							</div>
+							<label class="layui-form-label">二级类型</label>
+							<div class="layui-input-inline">
+								<select id="secondCheckedtypeId" name="secondCheckedtypeId" lay-filter="secondCheckedtypeId" lay-search="">
+
+								</select>
+							</div>
+							<label class="layui-form-label">提交人</label>
+							<div class="layui-input-inline">
+								<input type="text" id="createName" name="createName" placeholder="请输入提交人姓名" class="layui-input" />
 							</div>
 							<label class="layui-form-label">提交时间</label>
 							<div class="layui-input-inline">

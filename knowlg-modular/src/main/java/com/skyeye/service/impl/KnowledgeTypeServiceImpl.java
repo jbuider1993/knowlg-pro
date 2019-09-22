@@ -319,18 +319,36 @@ public class KnowledgeTypeServiceImpl  implements KnowledgeTypeService {
 
 	/**
 	 * 
-	     * @Title: queryAllSecondKnowledgeTypeStateList
-	     * @Description: 获取所有的二级类型列表
+	     * @Title: queryKnowledgeTypeUpStateListToPhoneShow
+	     * @Description: 获取所有的已经上线的一级二级类型名称列表用于手机端
 	     * @param @param inputObject
 	     * @param @param outputObject
 	     * @param @throws Exception    参数
 	     * @return void    返回类型
 	     * @throws
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
-	public void queryAllSecondKnowledgeTypeStateList(InputObject inputObject, OutputObject outputObject) throws Exception {
+	public void queryKnowledgeTypeUpStateListToPhoneShow(InputObject inputObject, OutputObject outputObject) throws Exception {
 		Map<String, Object> map = inputObject.getParams();
-		List<Map<String, Object>> beans = knowledgeTypeDao.queryAllSecondKnowledgeTypeStateList(map);	//从数据库中查询
+		List<Map<String, Object>> beans = null;
+		if(ToolUtil.isBlank(jedisClient.get(Constants.sysSecondKnowledgeTypeUpStateList("")))){	//若缓存中无值
+			beans = knowledgeTypeDao.queryFirstKnowledgeTypeUpStateList(map);	//从数据库中查询
+			jedisClient.set(Constants.sysSecondKnowledgeTypeUpStateList(""), JSON.toJSONString(beans));	//将从数据库中查来的内容存到缓存中
+		}else{
+			beans = JSONArray.fromObject(jedisClient.get(Constants.sysSecondKnowledgeTypeUpStateList("")).toString());
+		}
+		for(Map<String, Object> a : beans){
+			List<Map<String, Object>> bs = null;
+			if(ToolUtil.isBlank(jedisClient.get(Constants.sysSecondKnowledgeTypeUpStateList(a.get("id").toString())))){//若缓存中无值
+				a.put("parentId", a.get("id").toString());
+				bs = knowledgeTypeDao.querySecondKnowledgeTypeUpStateList(a);	//从数据库中查询
+				jedisClient.set(Constants.sysSecondKnowledgeTypeUpStateList(a.get("parentId").toString()), JSON.toJSONString(bs));//将从数据库中查来的内容存到缓存中
+			}else{
+				bs = JSONArray.fromObject(jedisClient.get(Constants.sysSecondKnowledgeTypeUpStateList(a.get("id").toString())).toString());
+			}
+			a.put("secondtype", bs);
+		}
 		outputObject.setBeans(beans);
 		outputObject.settotal(beans.size());
 	}
