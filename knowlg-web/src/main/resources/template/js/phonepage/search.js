@@ -21,10 +21,13 @@ layui.config({
 		done: function(page, next) { //到达临界点（默认滚动触发），触发下一页
 			var lis = [];
 			//以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
-			AjaxPostUtil.request({url:reqBasePath + "knowledgecontent001", params:{page: page, limit: 12, title: searchName, state: ""}, type:'json', callback:function(json){
+			AjaxPostUtil.request({url:reqBasePath + "knowledgephone004", params:{searchName: searchName}, type:'json', callback:function(json){
 	   			if(json.returnCode == 0){
 	   				var jsonStr = "";//实体json对象
 	   				$.each(json.rows, function(index, item) {
+	   					var reg = new RegExp("" + searchName + "", "g");
+	   					item.title = item.title.replace(reg, "<font style='color:#F33535;'>" + searchName + "</font>");
+	   					item.desc = item.desc.replace(reg, "<font style='color:#F33535;'>" + searchName + "</font>");
 	   					jsonStr = {
    							bean: item
    						};

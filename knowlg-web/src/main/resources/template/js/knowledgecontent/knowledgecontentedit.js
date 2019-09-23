@@ -100,10 +100,9 @@ layui.config({
 		 	        if (winui.verifyForm(data.elem)) {
 		 	        	var params = {
 		 	        		rowId: parent.rowId,
-		 	        		title: $("#title").val(),
+		 	        		title: encodeURIComponent($("#title").val()),
 		 	        		typeId: typeId,
 		 	        		secondTypeId: secondTypeId,
-		 	        		desc: $("#desc").val(),
 		 	        		content: encodeURIComponent(ue.getContent())
 		 	        	};
 		 	        	if(isNull(params.typeId)){
@@ -114,13 +113,14 @@ layui.config({
 		 	        		winui.window.msg('请选择二级公告类型', {icon: 2,time: 2000});
 		 	        		return false;
 		 	        	}
-		 	        	if(isNull($("#desc").val())){
-		    				winui.window.msg('请填写知识库简介', {icon: 2,time: 2000});
-		    				return false;
-		    			}
 		    			if(isNull(ue.getContent())){
 		    				winui.window.msg('请填写知识库内容', {icon: 2,time: 2000});
 		    				return false;
+		    			}else {
+		    				if(ue.getContentTxt().length > 200)
+		    					params.desc = encodeURI(ue.getContentTxt().substring(0,199));
+		    				else
+		    					params.desc = encodeURI(ue.getContentTxt());
 		    			}
 		    			AjaxPostUtil.request({url:reqBasePath + "knowledgecontent004", params:params, type:'json', callback:function(json){
 		    				if(json.returnCode == 0){

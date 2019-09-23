@@ -501,4 +501,22 @@ public class KnowledgeContentServiceImpl implements KnowledgeContentService {
 		outputObject.settotal(beans.size());
 	}
 
+	/**
+	 * 
+	     * @Title: queryKnowledgeContentPhoneByTitle
+	     * @Description: 手机端知识库根据标题或者简介进行搜索
+	     * @param @param inputObject
+	     * @param @param outputObject
+	     * @param @throws Exception    参数
+	     * @return void    返回类型
+	     * @throws
+	 */
+	@Override
+	public void queryKnowledgeContentPhoneByTitle(InputObject inputObject, OutputObject outputObject) throws Exception {
+		Map<String, Object> map = inputObject.getParams();
+ 		List<Map<String, Object>> beans = knowledgeContentDao.queryKnowledgeContentPhoneByTitle(map);
+		outputObject.setBeans(beans);
+		outputObject.settotal(beans.size());
+	}
+
 }

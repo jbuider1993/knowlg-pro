@@ -133,4 +133,7 @@
 	<url id="knowledgephone003" path="/post/KnowledgeContentController/queryKnowledgeContentPhoneBySecondtypeId" val="手机端知识库二级类型下的所有知识库" allUse="2">
 		<property id="rowId" name="id" ref="required" var="二级类型Id" />
 	</url>
+	<url id="knowledgephone004" path="/post/KnowledgeContentController/queryKnowledgeContentPhoneByTitle" val="手机端知识库根据标题或者简介进行搜索" allUse="2">
+		<property id="searchName" name="searchName" ref="" var="查询词" />
+	</url>
 </controller>
