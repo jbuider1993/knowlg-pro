@@ -91,6 +91,15 @@ layui.config({
 		$("#searchTypeKnowledge").attr("src", "typesearch.html");
 	});
 	
+	//菜单点击
+    $("body").on("click", ".menu-box-none", function(e){
+    	if($(this).parent().hasClass("layui-nav-itemed")){
+    		$(this).parent().removeClass("layui-nav-itemed");
+    	}else{
+    		$(this).parent().addClass("layui-nav-itemed");
+    	}
+    });
+	
 	//返回
 	$("body").on("click", "#reback", function(e){
 		$(".content-detail-show").animate({left: '100%'});
