@@ -44,5 +44,11 @@ layui.config({
 		}
 	});
 	
+	$("body").on("click", "#showForm .search-item", function(e){
+		parent.rowId = $(this).attr("rowid");
+    	parent.$(".content-detail-show").animate({left: '0px'});
+    	parent.$("#contentShow").attr("src", "details.html");
+	});
+	
     exports('phonepagesearch', {});
 });

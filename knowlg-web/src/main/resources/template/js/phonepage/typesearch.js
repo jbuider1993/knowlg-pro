@@ -3,7 +3,7 @@ layui.config({
 	base: basePath, 
 	version: skyeyeVersion
 }).extend({  //指定js别名
-    window: 'js/winui.window',
+    window: 'js/winui.window'
 }).define(['window', 'jquery', 'winui', 'form', 'flow'], function (exports) {
 	
 	winui.renderColor();
@@ -38,6 +38,12 @@ layui.config({
 	   			}
 	   		}});
 		}
+	});
+	
+	$("body").on("click", "#showForm .typesearch-item", function(e){
+		parent.rowId = $(this).attr("rowid");
+    	parent.$(".content-detail-show").animate({left: '0px'});
+    	parent.$("#contentShow").attr("src", "details.html");
 	});
 	
     exports('phonepagetypesearch', {});
