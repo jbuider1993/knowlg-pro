@@ -78,7 +78,7 @@ layui.config({
    				//加载win系统内容
    		        initWinConfig(json);
    		        //加载聊天
-   		        initTalk();
+//   		        initTalk();
    		        //加载右键
    		        initRightMenu();
 	   		    //扩展桌面助手工具
@@ -103,12 +103,6 @@ layui.config({
 		   		                 return false;
 		   		         	}
 	   		             });
-	   		         }
-	   		     }, {
-	   		         tips: '消息通知',
-	   		         icon: 'fa-list-ul',
-	   		         click: function (e) {
-	   		        	winui.window.openSysNotice(loadBottomMenuIcon);
 	   		         }
 	   		     }]);
 	   		     
