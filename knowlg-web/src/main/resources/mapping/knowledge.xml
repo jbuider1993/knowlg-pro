@@ -126,14 +126,4 @@
 	<url id="knowledgecontent015" path="/post/KnowledgeContentController/queryCheckedKnowledgeContent" val="已审核知识库详情" allUse="2">
 	    <property id="rowId" name="id" ref="required" var="知识库id"/>
 	</url>
-	<url id="knowledgephone001" path="/post/KnowledgeContentController/queryKnowledgeContentPhoneList" val="手机端知识库列表" allUse="2">
-	</url>
-	<url id="knowledgephone002" path="/post/KnowledgeTypeController/queryKnowledgeTypeUpStateListToPhoneShow" val="获取所有的已经上线的一级二级类型名称列表用于手机端" allUse="2">
-	</url>
-	<url id="knowledgephone003" path="/post/KnowledgeContentController/queryKnowledgeContentPhoneBySecondtypeId" val="手机端知识库二级类型下的所有知识库" allUse="2">
-		<property id="rowId" name="id" ref="required" var="二级类型Id" />
-	</url>
-	<url id="knowledgephone004" path="/post/KnowledgeContentController/queryKnowledgeContentPhoneByTitle" val="手机端知识库根据标题或者简介进行搜索" allUse="2">
-		<property id="searchName" name="searchName" ref="" var="查询词" />
-	</url>
 </controller>
