@@ -40,7 +40,7 @@
 	<url id="knowledgetype013" path="/post/KnowledgeTypeController/querySecondKnowledgeTypeUpStateList" val="获取上线的一级类型对应的上线的二级类型列表" allUse="2">
 		<property id="parentId" name="parentId" ref="" var="类型id" />
 	</url>
-	<url id="knowledgecontent001" path="/post/KnowledgeContentController/queryKnowledgeContentList" val="获取知识库列表" allUse="2">
+	<url id="knowledgecontent001" path="/post/KnowledgeContentController/queryKnowledgeContentList" val="获取知识库列表" allUse="1">
 		<property id="limit" name="limit" ref="required,num" var="分页参数,每页多少条数据" />
 		<property id="page" name="page" ref="required,num" var="分页参数,第几页"/>
 		<property id="title" name="title" ref="" var="标题"/>
@@ -48,7 +48,7 @@
 		<property id="firstType" name="typeId" ref="" var="一级类型"/>
 		<property id="secondTypeId" name="secondTypeId" ref="" var="二级类型" />
 	</url>
-	<url id="knowledgecontent002" path="/post/KnowledgeContentController/insertKnowledgeContentMation" val="新增知识库" allUse="2">
+	<url id="knowledgecontent002" path="/post/KnowledgeContentController/insertKnowledgeContentMation" val="新增知识库" allUse="1">
 		<property id="title" name="title" ref="required" var="知识库标题"/>
 		<property id="desc" name="desc" ref="required" var="知识库简介"/>
 		<property id="content" name="content" ref="required" var="知识库内容"/>
@@ -58,7 +58,7 @@
 	<url id="knowledgecontent003" path="/post/KnowledgeContentController/selectKnowledgeContentById" val="通过id查找对应的知识库信息用以编辑" allUse="2">
 	    <property id="rowId" name="id" ref="required" var="知识库id"/>
 	</url>
-	<url id="knowledgecontent004" path="/post/KnowledgeContentController/editKnowledgeContentById" val="编辑知识库" allUse="2">
+	<url id="knowledgecontent004" path="/post/KnowledgeContentController/editKnowledgeContentById" val="编辑知识库" allUse="1">
 	    <property id="rowId" name="id" ref="required" var="知识库id"/>
 	    <property id="title" name="title" ref="required" var="标题"/>
 	    <property id="typeId" name="typeId" ref="required" var="一级公告类型"/>
@@ -66,7 +66,7 @@
 	    <property id="desc" name="desc" ref="required" var="知识库简介"/>
 	    <property id="content" name="content" ref="required" var="公告内容"/>
 	</url>
-	<url id="knowledgecontent005" path="/post/KnowledgeContentController/deleteKnowledgeContentById" val="删除知识库" allUse="2">
+	<url id="knowledgecontent005" path="/post/KnowledgeContentController/deleteKnowledgeContentById" val="删除知识库" allUse="1">
 	    <property id="rowId" name="id" ref="required" var="知识库id"/>
 	</url>
 	<url id="knowledgecontent006" path="/post/KnowledgeContentController/queryKnowledgeContentMationById" val="知识库详情" allUse="2">

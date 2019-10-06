@@ -57,7 +57,9 @@
 			`desc` = #{desc},
 			content = #{content},
 			type_id = #{typeId},
-			second_type_id = #{secondTypeId}
+			second_type_id = #{secondTypeId},
+			create_time = #{createTime},
+			state = 1
 		</set>
 		WHERE id = #{id}
 	</update>

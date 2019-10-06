@@ -118,6 +118,7 @@ public class KnowledgeContentServiceImpl implements KnowledgeContentService {
 	@Override
 	public void editKnowledgeContentById(InputObject inputObject, OutputObject outputObject) throws Exception {
 		Map<String, Object> map = inputObject.getParams();
+		map.put("createTime", ToolUtil.getTimeAndToString());
 		knowledgeContentDao.editKnowledgeContentById(map);
 	}
 

@@ -46,15 +46,19 @@
     <div class="winui-toolbar">
         <div class="winui-tool">
             <button id="reloadTable" class="winui-toolbtn"><i class="fa fa-refresh" aria-hidden="true"></i>刷新数据</button>
-            <button id="addBean" class="winui-toolbtn"><i class="fa fa-plus" aria-hidden="true"></i>新增知识库</button>
-            <button id="addAllBean" class="winui-toolbtn"><i class="fa fa-plus" aria-hidden="true"></i>批量上传</button>
+            <button id="addBean" class="winui-toolbtn" auth="1570327662893"><i class="fa fa-plus" aria-hidden="true"></i>新增知识库</button>
+            <button id="addAllBean" class="winui-toolbtn" auth="1570329371505"><i class="fa fa-plus" aria-hidden="true"></i>批量上传</button>
         </div>
     </div>
     <div style="margin:auto 10px;">
         <table id="messageTable" lay-filter="messageTable"></table>
         <script type="text/html" id="tableBar">
-            <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">编辑</a>
-            <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="delet">删除</a>
+			{{# if(auth('1570327677709')){ }}
+            	<a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">编辑</a>
+			{{# } }}
+			{{# if(auth('1570327692712')){ }}
+            	<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="delet">删除</a>
+			{{# } }}
 			<a class="layui-btn layui-btn-xs" lay-event="details">详情</a>
         </script>
     </div>

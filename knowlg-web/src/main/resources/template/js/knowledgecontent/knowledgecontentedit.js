@@ -96,41 +96,46 @@ layui.config({
 		 		
 		 		form.render();
 		 	    form.on('submit(formEditBean)', function (data) {
-		 	    	//表单验证
-		 	        if (winui.verifyForm(data.elem)) {
-		 	        	var params = {
-		 	        		rowId: parent.rowId,
-		 	        		title: encodeURIComponent($("#title").val()),
-		 	        		typeId: typeId,
-		 	        		secondTypeId: secondTypeId,
-		 	        		content: encodeURIComponent(ue.getContent())
-		 	        	};
-		 	        	if(isNull(params.typeId)){
-		 	        		winui.window.msg('请选择一级公告类型', {icon: 2,time: 2000});
-		 	        		return false;
-		 	        	}
-		 	        	if(isNull(params.secondTypeId)){
-		 	        		winui.window.msg('请选择二级公告类型', {icon: 2,time: 2000});
-		 	        		return false;
-		 	        	}
-		    			if(isNull(ue.getContent())){
-		    				winui.window.msg('请填写知识库内容', {icon: 2,time: 2000});
-		    				return false;
-		    			}else {
-		    				if(ue.getContentTxt().length > 200)
-		    					params.desc = encodeURI(ue.getContentTxt().substring(0,199));
-		    				else
-		    					params.desc = encodeURI(ue.getContentTxt());
-		    			}
-		    			AjaxPostUtil.request({url:reqBasePath + "knowledgecontent004", params:params, type:'json', callback:function(json){
-		    				if(json.returnCode == 0){
-		    					parent.layer.close(index);
-		    	 	        	parent.refreshCode = '0';
-		    				}else{
-		    					winui.window.msg(json.returnMessage, {icon: 2,time: 2000});
-		    				}
-		    			}});
-		 	        }
+		 	    	var msg = '确认保存后将重新进行审核，是否确认保存？';
+		 			layer.confirm(msg, { icon: 3, title: '保存知识库' }, function (ind) {
+		 				layer.close(ind);
+		 				
+		 				//表单验证
+		 				if (winui.verifyForm(data.elem)) {
+		 					var params = {
+		 							rowId: parent.rowId,
+		 							title: encodeURIComponent($("#title").val()),
+		 							typeId: typeId,
+		 							secondTypeId: secondTypeId,
+		 							content: encodeURIComponent(ue.getContent())
+		 					};
+		 					if(isNull(params.typeId)){
+		 						winui.window.msg('请选择一级公告类型', {icon: 2,time: 2000});
+		 						return false;
+		 					}
+		 					if(isNull(params.secondTypeId)){
+		 						winui.window.msg('请选择二级公告类型', {icon: 2,time: 2000});
+		 						return false;
+		 					}
+		 					if(isNull(ue.getContent())){
+		 						winui.window.msg('请填写知识库内容', {icon: 2,time: 2000});
+		 						return false;
+		 					}else {
+		 						if(ue.getContentTxt().length > 200)
+		 							params.desc = encodeURI(ue.getContentTxt().substring(0,199));
+		 						else
+		 							params.desc = encodeURI(ue.getContentTxt());
+		 					}
+		 					AjaxPostUtil.request({url:reqBasePath + "knowledgecontent004", params:params, type:'json', callback:function(json){
+		 						if(json.returnCode == 0){
+		 							parent.layer.close(index);
+		 							parent.refreshCode = '0';
+		 						}else{
+		 							winui.window.msg(json.returnMessage, {icon: 2,time: 2000});
+		 						}
+		 					}});
+		 				}
+		 			});
 		 	        return false;
 		 	    });
 		 	}

@@ -13,7 +13,7 @@ layui.config({
 		form = layui.form,
 		treeGrid = layui.treeGrid;
 	
-//	authBtn('1568476869775');
+	authBtn('1568476869775');
 	
 	//表格渲染
 	treeGrid.render({
@@ -29,8 +29,8 @@ layui.config({
         treeShowName: 'name',//以树形式显示的字段
 	    cols: [[
 	        { title: '序号', type: 'numbers'},
-	        { field: 'name', title: '类型名称', align: 'center', width: 120 },
-	        { field: 'state', title: '当前状态', width: 120, align: 'center', templet: function(d){
+	        { field: 'name', title: '类型名称',  width: 120 },
+	        { field: 'state', title: '当前状态', width: 120,  templet: function(d){
 	        	if(d.state == '3'){
 	        		return "<span class='state-down'>下线</span>";
 	        	}else if(d.state == '2'){
@@ -39,15 +39,15 @@ layui.config({
 	        		return "<span class='state-new'>新建</span>";
 	        	}
 	        }},
-	        { field: 'pId', title: '类型级别', align: 'center', width: 120 , templet: function(d){
+	        { field: 'pId', title: '类型级别',  width: 120 , templet: function(d){
 	        	if(d.pId == '0'){
 	        		return "一级类型";
 	        	}else{
 	        		return "二级类型";
 	        	}
 	        }},
-	        { field: 'createTime', title: '创建时间', align: 'center', width: 180 },
-	        { title: '操作', fixed: 'right', align: 'center', width: 257, toolbar: '#tableBar'}
+	        { field: 'createTime', title: '创建时间',  width: 180 },
+	        { title: '操作', fixed: 'right',  width: 257, toolbar: '#tableBar'}
 	    ]],
 	    isPage:false,
 	    done: function(){

@@ -13,7 +13,8 @@ layui.config({
 		form = layui.form,
 		table = layui.table;
 	
-	authBtn('1568476869775');
+	authBtn('1570327662893'); //新增知识库
+	authBtn('1570329371505'); //批量上传
 	
 	var typeId = "";//一级类型
 	var secondTypeId = "";//二级类型
@@ -25,15 +26,15 @@ layui.config({
 	    method: 'post',
 	    url: reqBasePath + 'knowledgecontent001',
 	    cellMinWidth: 100,
-	    where: {title:$("#title").val(),state:$("#state").val(),firstType:firstType, secondTypeId:secondTypeId},
+	    where: {title:$("#title").val(),state:$("#state").val(), firstType:firstType, secondTypeId:secondTypeId},
 	    even: true,  //隔行变色
 	    page: true,
 	    limits: [8, 16, 24, 32, 40, 48, 56],
 	    limit: 8,
 	    cols: [[
 	        { title: '序号', type: 'numbers'},
-	        { field: 'title', title: '标题', align: 'center', width: 320 },
-	        { field: 'state', title: '当前状态', width: 150, align: 'center', templet: function(d){
+	        { field: 'title', title: '标题', width: 320 },
+	        { field: 'state', title: '当前状态', width: 150, templet: function(d){
 	        	if(d.state == '3'){
 	        		return "<span class='state-down'>审核不通过</span>";
 	        	}else if(d.state == '2'){
@@ -42,9 +43,9 @@ layui.config({
 	        		return "<span class='state-new'>审核中</span>";
 	        	}
 	        }},
-	        { field: 'typeName', title: '一级分类', align: 'center', width: 170 },
-	        { field: 'secondTypeName', title: '二级分类', align: 'center', width: 170 },
-	        { field: 'createTime', title: '创建时间', align: 'center', width: 160 },
+	        { field: 'typeName', title: '一级分类',  width: 170 },
+	        { field: 'secondTypeName', title: '二级分类', width: 170 },
+	        { field: 'createTime', title: '最后编辑时间', align: 'center', width: 160 },
 	        { title: '操作', fixed: 'right', align: 'center', width: 270, toolbar: '#tableBar'}
 	    ]],
 	    done: function(){

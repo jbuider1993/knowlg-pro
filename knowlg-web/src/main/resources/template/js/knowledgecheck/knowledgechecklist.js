@@ -96,11 +96,11 @@ layui.config({
 		    limit: 8,
 		    cols: [[
 		        { title: '序号', type: 'numbers'},
-		        { field: 'title', title: '标题', align: 'center', width: 250 },
-		        { field: 'typeName', title: '一级类型', align: 'center', width: 120 },
-		        { field: 'secondTypeName', title: '二级类型', align: 'center', width: 120 },
-		        { field: 'createUser', title: '提交人', align: 'center', width: 120},
-		        { field: 'createTime', title: '提交时间', align: 'center', width: 200},
+		        { field: 'title', title: '标题', width: 250 },
+		        { field: 'typeName', title: '一级类型', width: 120 },
+		        { field: 'secondTypeName', title: '二级类型', width: 120 },
+		        { field: 'createUser', title: '提交人', width: 120},
+		        { field: 'createTime', title: '最后编辑时间', align: 'center', width: 200},
 		        { title: '操作', fixed: 'right', align: 'center', width: 250, toolbar: '#tableBar'}
 		    ]],
 		    done: function(){
@@ -255,10 +255,10 @@ layui.config({
 		    limit: 8,
 		    cols: [[
 		        { title: '序号', type: 'numbers'},
-		        { field: 'title', title: '标题', align: 'center', width: 250},
-		        { field: 'typeName', title: '一级类型', align: 'center', width: 120 },
-		        { field: 'secondTypeName', title: '二级类型', align: 'center', width: 120 },
-		        { field: 'state', title: '状态', width: 80, align: 'center', templet: function(d){
+		        { field: 'title', title: '标题', width: 250},
+		        { field: 'typeName', title: '一级类型', width: 120 },
+		        { field: 'secondTypeName', title: '二级类型',  width: 120 },
+		        { field: 'state', title: '状态', width: 80, templet: function(d){
 		        	if(d.state == '2'){
 		        		return "<span class='state-up'>已通过</span>";
 		        	}else if(d.state == '3'){
@@ -267,9 +267,9 @@ layui.config({
 		        		return "参数错误";
 		        	}
 		        }},
-		        { field: 'createUser', title: '提交人', align: 'center', width: 80},
-		        { field: 'createTime', title: '提交时间', align: 'center', width: 130},
-		        { field: 'examineUser', title: '审核人', align: 'center', width: 80},
+		        { field: 'createUser', title: '提交人', width: 80},
+		        { field: 'createTime', title: '最后编辑时间', align: 'center', width: 130},
+		        { field: 'examineUser', title: '审核人', width: 80},
 		        { field: 'examineTime', title: '审核时间', align: 'center', width: 130},
 		        { title: '操作', fixed: 'right', align: 'center', width: 250, toolbar: '#checkedTableBar'}
 		    ]],
