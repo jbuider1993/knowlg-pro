@@ -17,7 +17,7 @@
 > 系统新增传统风格界面，layui左菜单右内容风格。
 
 #### 启动方式
-直接运行com.SkyeyeErpApplication即可，启动完成后，访问`http://localhost:8090`即可。 初始化账号密码：root/123456
+直接运行com.KnowLeDgeApplication即可，启动完成后，访问`http://localhost:8090`即可。 初始化账号密码：root/123456
 
 #### 软件架构
 
