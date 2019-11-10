@@ -4,6 +4,10 @@
 
 > 注：开源社区版只限学习，切勿使用此版本商用，内设授权码，默认十天删除所有非基础数据
 
+- QQ群号：(群一：[696070023](http://shang.qq.com/wpa/qunwpa?idkey=e9aace2bf3e05f37ed5f0377c3827c6683d970ac0bcc61b601f70dc861053229))(群二：[836039567](https://shang.qq.com/wpa/qunwpa?idkey=7bb6f29b27f772aadca9c7c4e384f7833c64e9c3c947b5e946c7b303d1fe174a))；有问题请提Issues，优先回答Issues问题
+- 开发环境对应的文档以及安装包地址：链接：https://pan.baidu.com/s/1msVBhDcf_I_VN63YCcS-kA 提取码：w8sr；不要告诉我你没有云盘
+- 如有定制需求，可入群或将需求发送至邮箱`598748873@qq.com`。
+
 #### 介绍
 
 - A．管理员可以通过后台对知识库的数据库数据进行批量维护工作，包括导入导出，备份等操作
@@ -16,20 +20,8 @@
 - H. 数据库存放至本地服务器，客户端可以通过手机进行授权访问，管理员可以通过客户端或者浏览器等工具进行集中维护
 - I. 可接入微信公众号
 
-> 系统新增传统风格界面，layui左菜单右内容风格。
-
 #### 启动方式
 直接运行com.KnowLeDgeApplication即可，启动完成后，访问`http://localhost:8090`即可。 初始化账号密码：root/123456
-
-#### 软件架构
-
-- Spring Boot 2.X
-- Layui
-- MySql
-- JDK 1.8
-
-#### 声明
-需要商业化的请向作者申请授权。如有定制需求，可入群或将需求发送至邮箱`598748873@qq.com`。
 
 #### 功能介绍
 
@@ -44,34 +36,29 @@
 
 ##### 后端技术:
 
-技术|名称|官网
+技术|名称|版本
 ---|---|---
-SpringBoot|核心框架|http://spring.io/projects/spring-boot
-MyBatis|ORM框架|http://www.mybatis.org/mybatis-3/zh/index.html
-Druid|数据库连接池|https://github.com/alibaba/druid
-Maven|项目构建管理|http://maven.apache.org/
-redis|key-value存储系统|https://redis.io/
-webSocket|浏览器与服务器全双工(full-duplex)通信|http://www.runoob.com/html/html5-websocket.html
-Activiti|工作流引擎|https://www.activiti.org/
-spring mvc|视图框架|http://spring.io/
-quartz 2.2.2|定时任务|http://www.quartz-scheduler.org/
-ActiveMQ|消息队列|http://activemq.apache.org/replicated-leveldb-store.html
-solr|企业级搜索应用服务器|https://lucene.apache.org/solr/
-Spring Cloud|微服务框架(目前用户APP端接口)|https://springcloud.cc/
+[SpringBoot](http://spring.io/projects/spring-boot)|核心框架|2.0.3
+[MyBatis](http://www.mybatis.org/mybatis-3/zh/index.html)|ORM框架
+[Druid](https://github.com/alibaba/druid)|数据库连接池|
+[Maven](http://maven.apache.org/)|项目构建管理|
+[redis](https://redis.io/)|key-value存储系统|3.2集群（不要问我单机的能不能行）
+[webSocket](http://www.runoob.com/html/html5-websocket.html)|浏览器与服务器全双工(full-duplex)通信|
+[quartz 2.2.2](http://www.quartz-scheduler.org/)|定时任务|
+[ActiveMQ](http://activemq.apache.org/replicated-leveldb-store.html)|消息队列|
+[Java]()|Java|1.8
+[MySQL]()|数据库|5.5.28
 
 ##### 前端技术：
 
-技术|名称|官网
----|---|---
-jQuery|函式库|http://jquery.com/
-zTree|树插件|http://www.treejs.cn/v3/
-layui|模块化前端UI|https://www.layui.com/
-winui|win10风格UI|https://gitee.com/doc_wei01_admin/skyeye
-codemirror|codemirror代码编辑器|https://codemirror.net/
-handlebars|js模板引擎|http://www.ghostchina.com/introducing-the-handlebars-js-templating-engine/
-webSocket|浏览器与服务器全双工(full-duplex)通信|http://www.runoob.com/html/html5-websocket.html
-G6|流程图开发|https://antv.alipay.com/zh-cn/index.html
-FullCalendar|日历插件|https://blog.csdn.net/qw_xingzhe/article/details/44920943
+技术|名称
+---|---
+[jQuery](http://jquery.com/)|函式库
+[zTree](http://www.treejs.cn/v3/)|树插件
+[layui](https://www.layui.com/)|模块化前端UI
+[winui](https://gitee.com/doc_wei01/skyeye)|win10风格UI(自己做的前端架构)
+[handlebars](http://www.ghostchina.com/introducing-the-handlebars-js-templating-engine/)|js模板引擎
+[webSocket](http://www.runoob.com/html/html5-websocket.html)|浏览器与服务器全双工(full-duplex)通信
 
 #### 代码描述
 ##### 前后台接口映射
@@ -122,36 +109,10 @@ public void 方法名(InputObject inputObject, OutputObject outputObject) throws
 |![](https://images.gitee.com/uploads/images/2019/1011/123735_a65d3eeb_1541735.png "")|![](https://s2.ax1x.com/2019/10/11/uHqFPJ.jpg "")|
 |![](https://s2.ax1x.com/2019/10/11/uHqkG9.png "")||
 
-#### 环境搭建
-##### 开发工具:
-
-- MySql: 数据库</br>
-- Tomcat: 应用服务器</br>
-- SVN|Git: 版本管理</br>
-- Nginx: 反向代理服务器</br>
-- Varnish: HTTP加速器</br>
-- IntelliJ IDEA|Eclipse: 开发IDE</br>
-- Navicat for MySQL: 数据库客户端</br>
-- Redis Manager：redis视图工具</br>
-
-#### 资源下载
-
-- JDK8 https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</br>
-- Maven http://maven.apache.org/download.cgi</br>
-- Redis https://redis.io/download</br>
-- Nginx http://nginx.org/en/download.html</br>
-
-#### 在线文档
-
-- [JDK8中文文档](https://blog.fondme.cn/apidoc/jdk-1.8-youdao/)</br>
-- [Spring4.x文档](http://spring.oschina.mopaas.com/)</br>
-- [Mybatis3官网](http://www.mybatis.org/mybatis-3/zh/index.html)</br>
-- [Nginx中文文档](http://tool.oschina.net/apidocs/apidoc?api=nginx-zh)</br>
-- [Git官网中文文档](https://git-scm.com/book/zh/v2)</br>
-
 #### 项目交流：
 
-QQ群号：[696070023](http://shang.qq.com/wpa/qunwpa?idkey=e9aace2bf3e05f37ed5f0377c3827c6683d970ac0bcc61b601f70dc861053229)
+QQ群号：(群一：[696070023](http://shang.qq.com/wpa/qunwpa?idkey=e9aace2bf3e05f37ed5f0377c3827c6683d970ac0bcc61b601f70dc861053229))
+(群二：[836039567](https://shang.qq.com/wpa/qunwpa?idkey=7bb6f29b27f772aadca9c7c4e384f7833c64e9c3c947b5e946c7b303d1fe174a))
 
 > 需要了解的请加微信或者进群：wzq_598748873，备注：码云-公司（姓名）。
 
