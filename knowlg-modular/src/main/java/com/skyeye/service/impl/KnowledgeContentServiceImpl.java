@@ -268,11 +268,12 @@ public class KnowledgeContentServiceImpl implements KnowledgeContentService {
 		}
 		jedisClient.del(Constants.getSysWordFileModuleByMd5(map.get("md5").toString()));
 		try{
-			Map<String, Object> entity = Word2Html.word2007ToHtml(outputFile, tPath + "\\upload\\ueditor\\");
+			String contentId = ToolUtil.getSurFaceId();
+			Map<String, Object> entity = Word2Html.word2007ToHtml(outputFile, tPath + "\\upload\\ueditor\\", contentId);
 			if("1".equals(entity.get("code").toString())){//成功
 				String content = entity.get("content").toString();
 				Map<String, Object> bean = new HashMap<>();
-				bean.put("id", ToolUtil.getSurFaceId());
+				bean.put("id", contentId);
 				bean.put("state", "1");
 				bean.put("readNum", '0');
 				bean.put("title", fileName);
@@ -287,7 +288,7 @@ public class KnowledgeContentServiceImpl implements KnowledgeContentService {
 				if("1".equals(entity.get("code").toString())){//成功
 					String content = entity.get("content").toString();
 					Map<String, Object> bean = new HashMap<>();
-					bean.put("id", ToolUtil.getSurFaceId());
+					bean.put("id", contentId);
 					bean.put("state", "1");
 					bean.put("readNum", '0');
 					bean.put("title", fileName);

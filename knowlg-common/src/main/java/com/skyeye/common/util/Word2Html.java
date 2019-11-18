@@ -43,7 +43,7 @@ public class Word2Html {
 	 * @return
 	 * @throws Exception
 	 */
-	public static Map<String, Object> word2007ToHtml(File f, String imagesPath) throws Exception {
+	public static Map<String, Object> word2007ToHtml(File f, String imagesPath, String id) throws Exception {
 		Map<String, Object> map = new HashMap<>();
 		map.put("code", 0);// 0失败；1成功
 		map.put("content", "转换失败");
@@ -57,7 +57,7 @@ public class Word2Html {
 					InputStream in = new FileInputStream(f);
 					XWPFDocument document = new XWPFDocument(in);
 					// 2)解析XHTML配置（这里设置IURIResolver来设置图片存放的目录）
-					File imageFolderFile = new File(imagesPath);
+					File imageFolderFile = new File(imagesPath + id + "\\");
 					if(!imageFolderFile.exists()){
 						imageFolderFile.mkdirs();
 					}
@@ -66,7 +66,7 @@ public class Word2Html {
 					options.setIgnoreStylesIfUnused(false);
 					options.URIResolver(new IURIResolver() {
 						public String resolve(String uri) {
-					    	return "\\images\\upload\\ueditor\\" + uri;
+					    	return "\\images\\upload\\ueditor\\" + id + "\\" + uri;
 				    	}
 					});
 					options.setFragment(true);
