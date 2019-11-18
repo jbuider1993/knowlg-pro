@@ -23,6 +23,7 @@ import org.apache.poi.hwpf.converter.WordToHtmlConverter;
 import org.apache.poi.hwpf.usermodel.PictureType;
 import org.apache.poi.xwpf.converter.core.FileImageExtractor;
 import org.apache.poi.xwpf.converter.core.FileURIResolver;
+import org.apache.poi.xwpf.converter.core.IURIResolver;
 import org.apache.poi.xwpf.converter.xhtml.XHTMLConverter;
 import org.apache.poi.xwpf.converter.xhtml.XHTMLOptions;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -63,6 +64,11 @@ public class Word2Html {
 					XHTMLOptions options = XHTMLOptions.create().URIResolver(new FileURIResolver(imageFolderFile));
 					options.setExtractor(new FileImageExtractor(imageFolderFile));
 					options.setIgnoreStylesIfUnused(false);
+					options.URIResolver(new IURIResolver() {
+						public String resolve(String uri) {
+					    	return "\\images\\upload\\ueditor\\" + uri;
+				    	}
+					});
 					options.setFragment(true);
 					// 可以使用字符数组流获取解析的内容
 					ByteArrayOutputStream baos = new ByteArrayOutputStream();
