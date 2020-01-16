@@ -4,7 +4,7 @@
 
 > 注：开源社区版只限学习，切勿使用此版本商用，内设授权码，默认十天删除所有非基础数据
 
-- QQ群号：(群一：[696070023](http://shang.qq.com/wpa/qunwpa?idkey=e9aace2bf3e05f37ed5f0377c3827c6683d970ac0bcc61b601f70dc861053229))(群二：[836039567](https://shang.qq.com/wpa/qunwpa?idkey=7bb6f29b27f772aadca9c7c4e384f7833c64e9c3c947b5e946c7b303d1fe174a))；有问题请提Issues，优先回答Issues问题
+- 项目交流群：(群一(满)：[696070023](http://shang.qq.com/wpa/qunwpa?idkey=e9aace2bf3e05f37ed5f0377c3827c6683d970ac0bcc61b601f70dc861053229))(群二：[836039567](https://shang.qq.com/wpa/qunwpa?idkey=7bb6f29b27f772aadca9c7c4e384f7833c64e9c3c947b5e946c7b303d1fe174a))(群三：[887391486](https://shang.qq.com/wpa/qunwpa?idkey=a65f2e0292eb1048bb13abb7adca302bd83e3465974861ec1f04c2f7fffc4d99))；有问题请提Issues，优先回答Issues问题
 - 开发环境对应的文档以及安装包地址：链接：https://pan.baidu.com/s/1msVBhDcf_I_VN63YCcS-kA 提取码：w8sr；不要告诉我你没有云盘
 - 如有定制需求，可入群或将需求发送至邮箱`598748873@qq.com`。
 
